@@ -96,13 +96,13 @@
 
 <meta name="description" content="Discover the world, discover the heart">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Angus&#39; MiniCraft">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Angus&#39; MiniCraft">
 <meta property="og:description" content="Discover the world, discover the heart">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Angus&#39; MiniCraft">
 <meta name="twitter:description" content="Discover the world, discover the heart">
 
 
@@ -138,11 +138,20 @@
 
 
 
-  <title>Hexo</title>
+  <title>Angus' MiniCraft</title>
   
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -176,7 +185,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Angus' MiniCraft</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -292,7 +301,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Angus' MiniCraft">
     </span>
 
     
@@ -365,26 +374,17 @@
       
         
           
-            <h1 id="C-中的指针解密"><a href="#C-中的指针解密" class="headerlink" title="C++中的指针解密"></a>C++中的指针解密</h1><h2 id="指针基础"><a href="#指针基础" class="headerlink" title="指针基础"></a>指针基础</h2><ol>
-<li><p>指针是C,C++里面一个很特殊也很强大的结构。首先，指针的值表示所指向的内存空间，也就是所指向值的地址。明确<code>p; &amp;p</code>表示俩个完全不同的意义。例如<code>node *p = new node(2)</code>  p就是2所在的地址，&amp;p则是p这个变量在内存中的地址。</p>
-<p>如下图所示：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">  	node *next;</div><div class="line">  	node(<span class="keyword">int</span> x):val(x),next(<span class="literal">nullptr</span>)&#123;&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    node *p = <span class="keyword">new</span> node(<span class="number">1</span>);</div><div class="line">  	<span class="built_in">cout</span> &lt;&lt; p &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;p &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//结果</span></div><div class="line"><span class="number">0x7f0c3c025a0</span> <span class="number">0x7fff5e71fb40</span></div></pre></td></tr></table></figure>
-<p>可以明显看到俩者结果不同。</p>
-</li>
-<li><p>明确了这点之后，再看一个常见的操作，指针赋0. 经常使用<code>p=NULL</code>或者<code>p=nullptr</code>来表示一个指针为空，或者说这个指针没有指向有用的空间。因此在使用的时候可以通过判定指针是否为空来检查其合法性。这里顺便提一下NULL和nullptr的区别，NULL是从C中继承过来的，NULL既可以表示0，也可以表示空指针，例如<code>int p= NULL, int* p = NULL</code>这些都是可以的。但是nullptr只表示空指针，<code>int p=nullptr</code>是无法通过编译的，而<code>int*p = nullptr</code>则是正确的。因此现在最好使用nullptr更加安全，意思更加明确。</p>
-</li>
-</ol>
-<h2 id="指针进阶"><a href="#指针进阶" class="headerlink" title="指针进阶"></a>指针进阶</h2><h3 id="指针的指针"><a href="#指针的指针" class="headerlink" title="指针的指针"></a>指针的指针</h3><p>已经知道指针的目的就是方便操作所指向的对象，那么指针的指针呢？ 指针的指针其实就是指针的地址。指针的指针有一个作用就是可以不通过函数返回值获得改变后的指针值（指针所指向的地方）。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    node *next;</div><div class="line">    node(<span class="keyword">int</span> x) : val(x), next(<span class="literal">nullptr</span>) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">(node *p)</span></span>&#123;</div><div class="line">    p = <span class="keyword">new</span> node(<span class="number">2</span>);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; p-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; p &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;p &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">(node **p)</span></span>&#123;</div><div class="line">    *p = <span class="keyword">new</span> node(<span class="number">3</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    node *p = <span class="keyword">new</span> node(<span class="number">1</span>);</div><div class="line"></div><div class="line">    test1(p);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; p-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; p &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;p &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    test2(&amp;p);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; p-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; p &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;p &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 运行的结果是</span></div><div class="line"><span class="number">2</span> <span class="number">0x7fddf8500010</span> <span class="number">0x7fff57e33ad8</span></div><div class="line"><span class="number">1</span> <span class="number">0x7fddf8500000</span> <span class="number">0x7fff57e33b30</span></div><div class="line"><span class="number">3</span> <span class="number">0x7fddf8500020</span> <span class="number">0x7fff57e33b30</span></div></pre></td></tr></table></figure>
-<p>这里的问题跟浅拷贝是类似的。可以看到test1中的p已经不是原始的p，&amp;p的值已经发生了改变。所以如果想要获得更新之后的指向，test1必须有返回值返回给p才行。这也是指针的指针存在的一个意义。</p>
-<h3 id="从快慢指针中学习到的"><a href="#从快慢指针中学习到的" class="headerlink" title="从快慢指针中学习到的"></a>从快慢指针中学习到的</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">slow = head;</div><div class="line">fast = head-&gt;next; <span class="comment">//注意这里的初始化操作，fast必须要初始化为head的next</span></div><div class="line"><span class="keyword">while</span>(fast)&#123;</div><div class="line">    fast = fast-&gt;next;</div><div class="line">  	<span class="keyword">if</span>(fast)&#123;</div><div class="line">        slow = slow-&gt;next;</div><div class="line">      	fast = fast-&gt;next;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">front = head;</div><div class="line">back = slow-&gt;next; <span class="comment">// 必须是slow-&gt;next，而不能是slow,主要为了之后nullptr考虑</span></div><div class="line">slow-&gt;next = <span class="literal">nullptr</span>; <span class="comment">// 只要slow-&gt;next=nullptr才能中断原始链表</span></div></pre></td></tr></table></figure>
-<p>初始化的问题主要是为了跟最后back选择slow-&gt;next配套，这样的初始化才能处理比如个数只有俩个的链表。</p>
-<p>这里主要想讲的是为什么要选择slow-&gt;next而不能选择slow. 假设跟slow指向同一个点的指针叫a-&gt;next. 这里<code>slow==a-&gt;next</code>这是成立的，他俩指向同一个值。但是<code>&amp;p != &amp;(a-&gt;next)</code>这个意思是slow和a-&gt;next是俩个不同的指针。如何上述代码写成了back = slow; slow=nullptr; 那么back依然可以正确获得一半链表，但是slow=nullptr，并没有将原始链表从slow处断开，因为slow=nullptr只是说slow指向0了，是无效指针了，并没有跟原始链表产生任何联系。</p>
-<p>但是slow-&gt;next 和a-&gt;next-&gt;next，他们存在<code>slow-&gt;next == a-&gt;next-&gt;next</code>表示这俩个指针指向相同的内容，而且<code>&amp;(slow-&gt;next) == &amp;(a-&gt;next-&gt;next)</code>也就是说他俩实际上是一个指针，只是不同的名字而已。（这里有一些地方我还不是非常理解，例如head是一个链表的头，p是另一个链表的头，当p=head之后，那么p-&gt;next也跟head-&gt;next是一个指针了。应该是有实现上的更加底层的东西，留待以后慢慢发现。）。这里就像已经有一个链表head, 和一个指针p, p = head之后，p和head是俩个指针，但是指向相同的地方，而p-&gt;next和head-&gt;next就变成了相同的指针。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    node *a = <span class="keyword">new</span> node(<span class="number">1</span>);</div><div class="line">    node *b = <span class="keyword">new</span> node(<span class="number">2</span>);</div><div class="line">    node *c = <span class="keyword">new</span> node(<span class="number">3</span>);</div><div class="line">    a-&gt;next = b;</div><div class="line">    b-&gt;next = c;</div><div class="line"><span class="comment">//    cout &lt;&lt; a &lt;&lt; " " &lt;&lt; a-&gt;val &lt;&lt; " " &lt;&lt; &amp;a &lt;&lt; endl;</span></div><div class="line"><span class="comment">//    cout &lt;&lt; b &lt;&lt; " " &lt;&lt; b-&gt;val &lt;&lt; " " &lt;&lt; &amp;b &lt;&lt; endl;</span></div><div class="line"><span class="comment">//    cout &lt;&lt; c &lt;&lt; " " &lt;&lt; c-&gt;val &lt;&lt; " " &lt;&lt; &amp;c &lt;&lt; endl;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; a-&gt;next &lt;&lt; <span class="string">" "</span> &lt;&lt; a-&gt;next-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;(a-&gt;next) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="string">" "</span> &lt;&lt; b-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;(b) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; a-&gt;next-&gt;next &lt;&lt; <span class="string">" "</span> &lt;&lt; a-&gt;next-&gt;next-&gt;val &lt;&lt;<span class="string">" "</span> &lt;&lt; &amp;(a-&gt;next-&gt;next) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; b-&gt;next &lt;&lt; <span class="string">" "</span> &lt;&lt; b-&gt;next-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;(b-&gt;next) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="string">" "</span> &lt;&lt; c-&gt;val &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;c &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="number">0x7f9abf4025b0</span> <span class="number">2</span> <span class="number">0x7f9abf4025a8</span> <span class="comment">// 不同</span></div><div class="line"><span class="number">0x7f9abf4025b0</span> <span class="number">2</span> <span class="number">0x7fff51148ae0</span> <span class="comment">// 不同</span></div><div class="line"></div><div class="line"><span class="number">0x7f9abf4025c0</span> <span class="number">3</span> <span class="number">0x7f9abf4025b8</span> <span class="comment">// 相同</span></div><div class="line"><span class="number">0x7f9abf4025c0</span> <span class="number">3</span> <span class="number">0x7f9abf4025b8</span> <span class="comment">// 相同</span></div><div class="line"><span class="number">0x7f9abf4025c0</span> <span class="number">3</span> <span class="number">0x7fff51148ad8</span> <span class="comment">// 不同</span></div></pre></td></tr></table></figure>
-<p>从结果可以看到，编译器为所有的next维护了且仅维护了一套指针。所以只有通过-&gt;next才能同时改变当前和原始（或者说只有-&gt;next才是同一个指针）。</p>
-
-          
+          C++中的指针解密指针基础
+指针是C,C++里面一个很特殊也很强大的结构。首先，指针的值表示所指向的内存空间，也就是所指向值的地址。明确p; &amp;p表示俩个完全不同的意义。例如node *p = new node(2)  p就是2所在的地址，&amp;p则是p这个变量在内存中的地址。
+如下图所
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/24/C++中的指针解密/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -476,10 +476,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">tags</span>
-              
+              </a>
             </div>
           
 
@@ -488,6 +488,35 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
           
         </div>
 
@@ -540,6 +569,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
         
       </div>
@@ -640,7 +689,7 @@
   
 
     
-      <script id="dsq-count-scr" src="https://xingwenzhang.disqus.com/count.js" async></script>
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
     
 
     
