@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Top coder/ Power up C++ with the standard Template Libraryvector 基本操作 对于STL中的容器，判断是否为空的时候，最好使用empty函数，而不是通过size来进行，这是因为size操作并不总是O(1)的操作  Vector resize之后再使用push_back，开始的位置是resize的最后的位置，而不是包含的元素位置。比如ve">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TopCoder-Power Up C++ with the standard Template Library">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/index.html">
+<meta property="og:site_name" content="Angus&#39; MiniCraft">
+<meta property="og:description" content="Top coder/ Power up C++ with the standard Template Libraryvector 基本操作 对于STL中的容器，判断是否为空的时候，最好使用empty函数，而不是通过size来进行，这是因为size操作并不总是O(1)的操作  Vector resize之后再使用push_back，开始的位置是resize的最后的位置，而不是包含的元素位置。比如ve">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-21T06:30:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TopCoder-Power Up C++ with the standard Template Library">
+<meta name="twitter:description" content="Top coder/ Power up C++ with the standard Template Libraryvector 基本操作 对于STL中的容器，判断是否为空的时候，最好使用empty函数，而不是通过size来进行，这是因为size操作并不总是O(1)的操作  Vector resize之后再使用push_back，开始的位置是resize的最后的位置，而不是包含的元素位置。比如ve">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/"/>
+
+
+
+
+
+  <title>TopCoder-Power Up C++ with the standard Template Library | Angus' MiniCraft</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Angus' MiniCraft</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MiniCraft">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TopCoder-Power Up C++ with the standard Template Library</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-20T23:30:38-07:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Top-coder-Power-up-C-with-the-standard-Template-Library"><a href="#Top-coder-Power-up-C-with-the-standard-Template-Library" class="headerlink" title="Top coder/ Power up C++ with the standard Template Library"></a>Top coder/ Power up C++ with the standard Template Library</h1><h2 id="vector-基本操作"><a href="#vector-基本操作" class="headerlink" title="vector 基本操作"></a>vector 基本操作</h2><ol>
+<li><p>对于STL中的容器，判断是否为空的时候，最好使用empty函数，而不是通过size来进行，这是因为size操作并不总是O(1)的操作</p>
+</li>
+<li><p>Vector resize之后再使用push_back，开始的位置是resize的最后的位置，而不是包含的元素位置。比如vector有20个元素，之后resize到25,再push_back的时候会从26开始，而不是21</p>
+</li>
+<li><p>因为vector的复制操作很占空间。因此在作为参数传入的时候，尽量使用引用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span></span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>对于迭代器，最好使用!=来比较而不是&lt;，因为在某些类型里面，比较前后关系不高效</p>
+</li>
+<li><p>algorithms中有min_element 和 max_element俩个函数</p>
+</li>
+<li><p>sort函数如何descending排序呢？（默认是ascending）</p>
+<ol>
+<li>这里有比较多的方法，一种是使用greater<int>()， 默认是less<int>()</int></int></li>
+<li>还有一种是sort(v.rbegin(), v.rend())，这个比较巧妙</li>
+</ol>
+</li>
+<li><p>c++ typeof关键字，个人感觉现在支持C++ 11之后可以完美使用auto代替</p>
+</li>
+<li><p>vector中的insert和erase都有单个元素版本和interval 版本</p>
+</li>
+</ol>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>string.substr(start, end)</p>
+<p>这里需要注意的是unsigned(0)-1 可能产生的问题</p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>基于RB-tree实现，可以实现在log(N)的时间内完成add, remove, check</p>
+<p>check使用函数find()函数。这里的find不是全局的find,全局的find函数时间复杂度是O(N)，这里使用check的memeber func,时间复杂度是log(N)。 set.find()</p>
+<p>当然check也可以使用memeber func count， set.count()判断是否为0，同样时间复杂度为log(N)</p>
+<p>还有一个重要的点在于set中的元素(可排序的comparable)都是排序的。所以一个巧妙的应用是，将vector中的元素去重，并且排序。那么可以这么做：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1;</div><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s(v1.begin(), v1.end());</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2(s.begin(), s.end());</div></pre></td></tr></table></figure>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>map与set都是基于RB-tree来实现的，因此唯一的区别就是map中存储的是pair<key,value></key,value></p>
+<p>还有一点map定义了[]的操作。但是[]与member func find()的区别在于：</p>
+<p>find不会改变map的元素，[]当没有这个key时，会创建一个元素。</p>
+<p><strong>为什么尽量不要改变Map和set的key值</strong>，原因在于，map和set都是由rb-tree实现的，内部会一直保持一个ascending的order, 如果不停改变内部key值（循环里不停使用map[]），一来对效率是一个影响，二来许多依据顺序的member func的行为会异常。</p>
+<h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><p>比较常用的函数有min, max, swap 这些都是作用与俩个元素上</p>
+<p>find(start,end, ele), count(start,end, ele), 时间复杂度是O(N)，所以set, map不要使用std::find, std::count而是应该使用set::find(), set::count()</p>
+<p>next_permutation(start, end) prev_permutation(start,end). 使用这个函数之前，需要确保的是容器已经排好序，不然会丢失某些组合。</p>
+<h2 id="sstream"><a href="#sstream" class="headerlink" title="sstream"></a>sstream</h2><p>这个库在string processing/input/output上很方便</p>
+<p>包括istringstream, ostringstream</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s)</span></span>&#123;</div><div class="line">  <span class="comment">// Construct an object to parse strings</span></div><div class="line">  <span class="function"><span class="built_in">istringstream</span> <span class="title">is</span><span class="params">(s)</span></span>;</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line">  </div><div class="line">  <span class="comment">// Read int while possible and add it to the vector</span></div><div class="line">  <span class="keyword">int</span> tmp;</div><div class="line">  <span class="keyword">while</span>(is &gt;&gt; tmp)&#123;</div><div class="line">    v.push_back(tmp);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码从一个string中parse出来所有的int，并且将所有的数字都读入vector中，这比起自己逐个字符来处理int要方便快捷得多</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="built_in">string</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span></span>&#123;</div><div class="line">  <span class="comment">// Construct an object to do formatted output</span></div><div class="line">  <span class="built_in">ostringstream</span> os;</div><div class="line">  </div><div class="line">  <span class="comment">// Copy all eles from vector to string stream as text</span></div><div class="line">  tr(v, it)&#123; <span class="comment">// This is a macro to traverse a container</span></div><div class="line">    os &lt;&lt; <span class="string">' '</span> &lt;&lt; *it;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// Get string from string stream</span></div><div class="line">  <span class="built_in">string</span> s = os.str();</div><div class="line">  </div><div class="line">  <span class="keyword">if</span>(!s.empty())&#123;</div><div class="line">    s = s.substr(<span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Creating-Vector-from-Map"><a href="#Creating-Vector-from-Map" class="headerlink" title="Creating Vector from Map"></a>Creating Vector from Map</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; M;</div><div class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; &gt; v(M.begin(), M.end());</div></pre></td></tr></table></figure>
+<p>这样v里面的元素是排序的，并且是map的一份copy</p>
+<h2 id="Copying-data-between-containers"><a href="#Copying-data-between-containers" class="headerlink" title="Copying data between containers"></a>Copying data between containers</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">copy(from_begin, from_end, to_begin);</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1, v2;</div><div class="line"><span class="comment">// Now copy v2 to the end of v1</span></div><div class="line">v1.resize(v1.size() + v2.size());</div><div class="line">copy(v2.begin(), v2.end(), v1.end()-v2.size());</div></pre></td></tr></table></figure>
+<p>copy数据中还经常有的一个操作就是如何从vector向set copy，这里有一个东西叫inserter(在iterator库里)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">copy(v.begin(), v.end(), inserter(s));</div><div class="line"><span class="comment">// Last sentence equals to </span></div><div class="line"><span class="comment">// tr(v, it)&#123;</span></div><div class="line"><span class="comment">//  s.insert(*it);</span></div><div class="line"><span class="comment">// &#125;</span></div></pre></td></tr></table></figure>
+<p>可以使用back_inserter向vector插入元素，使用front_inserter向deque插入元素。copy的前俩个参数换成rbegin, rend之后可以逆向copy</p>
+<h2 id="Merging-lists"><a href="#Merging-lists" class="headerlink" title="Merging lists"></a>Merging lists</h2><p>一个常用的操作是对俩个<strong>有序</strong>的链表。</p>
+<p>所以STL提供了对集合的交集，并集，差集，对称差集</p>
+<p>set_union(), set_intersection(), set_difference(), set_symmetric_difference()</p>
+<p>使用这四个函数需要一个前提条件，就是<strong>有序</strong>。 意味着使用之前必须要排序。</p>
+<p>以一个为例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">end_result = set_intersectiion(begin1,end1, begin2, end2, begin_result)</div></pre></td></tr></table></figure>
+<p>最后一个参数是要存储的容器的启始位置，还需要注意一个点就是这个函数的返回值，因为在执行intersection操作之前是不知道长度的，因此这个函数返回最后结果的最后一个位置。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2;</div><div class="line"><span class="comment">// ... //</span></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp(max(v1.size(), v2.size()));</div><div class="line"></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(tmp.begin(), set_intersection(v1.begin(), v1.end(), v2.begin(),v2.end(),tmp.begin());</div></pre></td></tr></table></figure>
+<p>这里最后一行直接利用了函数的返回值是end iterator，所以直接新建了一个包含结果的vector.</p>
+<h2 id="Computing-algorithm"><a href="#Computing-algorithm" class="headerlink" title="Computing algorithm"></a>Computing algorithm</h2><p>这里介绍俩个操作，一个accumulate,一个inner_product</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = accumulate(v.begin(),v.end(), <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>最后一个参数是累加的初值。</p>
+<p>默认是累加，也可以做累乘</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> product = accumulate(v.begin(), v.end(), <span class="keyword">double</span>(<span class="number">1</span>), multiplies&lt;<span class="keyword">double</span>&gt;());</div></pre></td></tr></table></figure>
+<p>这里使用functional库里面的multiplies来完成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> r = inner_product(v1.begin(), v1.end(), v2.begin(), <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>这个操作将v1 v2逐个元素相乘，最后再相加。最后的参数是相加的初值。</p>
+<p>然后再介绍一个跟accumulate类似的操作，是partial_sum可以实现逐次输出相加和(逐次相乘),具体可以查看docs,利用这个函数可以实现！操作。</p>
+<h2 id="Nontrivial-sorting"><a href="#Nontrivial-sorting" class="headerlink" title="Nontrivial sorting"></a>Nontrivial sorting</h2><p>一种是重载运算符&lt;，这样就不需要给sort函数第三个参数。或者就是重载运算符(),这样可以给sort第三个参数。</p>
+<p>一个主意点：当重载运算符&lt;，一定要保证对相等值返回值是false</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/" title="TopCoder-Power Up C++ with the standard Template Library">http://yoursite.com/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/20/BFS-DFS概要总结/" rel="next" title="BFS-DFS概要总结">
+                <i class="fa fa-chevron-left"></i> BFS-DFS概要总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/selfie.jpg"
+               alt="Angus" />
+          <p class="site-author-name" itemprop="name">Angus</p>
+           
+              <p class="site-description motion-element" itemprop="description">Discover the world, discover the heart</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Top-coder-Power-up-C-with-the-standard-Template-Library"><span class="nav-number">1.</span> <span class="nav-text">Top coder/ Power up C++ with the standard Template Library</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector-基本操作"><span class="nav-number">1.1.</span> <span class="nav-text">vector 基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-number">1.3.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">1.4.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algorithm"><span class="nav-number">1.5.</span> <span class="nav-text">algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sstream"><span class="nav-number">1.6.</span> <span class="nav-text">sstream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-Vector-from-Map"><span class="nav-number">1.7.</span> <span class="nav-text">Creating Vector from Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copying-data-between-containers"><span class="nav-number">1.8.</span> <span class="nav-text">Copying data between containers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merging-lists"><span class="nav-number">1.9.</span> <span class="nav-text">Merging lists</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computing-algorithm"><span class="nav-number">1.10.</span> <span class="nav-text">Computing algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nontrivial-sorting"><span class="nav-number">1.11.</span> <span class="nav-text">Nontrivial sorting</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Angus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/';
+          this.page.identifier = '2017/10/20/TopCoder-Power-Up-C-with-the-standard-Template-Library/';
+          this.page.title = 'TopCoder-Power Up C++ with the standard Template Library';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
