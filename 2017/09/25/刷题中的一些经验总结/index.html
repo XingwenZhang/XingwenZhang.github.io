@@ -102,10 +102,12 @@
 <meta property="og:site_name" content="Angus&#39; MiniCraft">
 <meta property="og:description" content="编程中的一些经验总结 ！是整体取反，~是按位取反。  ！的运算优先级大于%，因此有%操作的时候，最好直接上括号  set 内部是无序的，因此distance操作对set来说没有意义。其内部是根据插入元素的大小进行排序的。  lower_bound是返回第一个&amp;gt;= val的iterator, upper_bound则是返回第一个&amp;gt;val的iterator。所以lower_bound和up">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-26T04:57:24.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/09/25/uploads/binaryindexedtree.jpeg">
+<meta property="og:updated_time" content="2017-10-21T06:26:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="刷题中的一些经验总结">
 <meta name="twitter:description" content="编程中的一些经验总结 ！是整体取反，~是按位取反。  ！的运算优先级大于%，因此有%操作的时候，最好直接上括号  set 内部是无序的，因此distance操作对set来说没有意义。其内部是根据插入元素的大小进行排序的。  lower_bound是返回第一个&amp;gt;= val的iterator, upper_bound则是返回第一个&amp;gt;val的iterator。所以lower_bound和up">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/25/uploads/binaryindexedtree.jpeg">
 
 
 
@@ -410,16 +412,16 @@
 <li><p>那么正确的操作是什么呢</p>
 </li>
 </ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> it = v.begin();</div><div class="line"><span class="keyword">while</span>(it!=v.end())&#123;</div><div class="line">    <span class="keyword">if</span>(condition)&#123;</div><div class="line">        it = v.erase(it);</div><div class="line">    &#125;</div><div class="line">  	<span class="keyword">else</span>&#123;</div><div class="line">        it++;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样的实现看起来不是很优雅，有没有优雅的方法呢？</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 利用remove_if操作来进行</span></div><div class="line">v.erase(remove_if(v.begin(), v.end(), [](<span class="keyword">int</span> i)&#123;i&lt;<span class="number">3</span>;&#125;), v.end());</div></pre></td></tr></table></figure>
-<p>这个有一个专门的名字叫做<a href="https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom" target="_blank" rel="external">erase-remove idiom</a></p>
-<p>那么为什么同样是删除，这样的操作就可以呢？难道不改变vector的大小吗？事实上，主要的原因在于remove_if操作不是真正删除，而是将不满足条件的，将来不删除的放在vector的前面，而将所有满足条件的要删除的放置在vector后部，之后返回第一个要删除的元素的位置，然后erase直接就可以将这个位置到末尾所有的元素删除掉了。</p>
-<p>这里还用到的一个知识点是，lambda函数，lambda我个人在Python里面用得多一些，平时刷题用C++的时候很少用到，同时GCC关于lambda函数似乎还有一个bug，可能需要在[]里面写上[this] 或者[&amp;]才行编译通过。还有一个就是，如果里面的3是一个局部变量怎么办？ 这个时候也会有编译问题的，解决的方法就是[this, temp]将temp名字放到[]中，或者干脆把temp设置为全局变量也可以实现。</p>
-<p>​</p>
 </li>
 </ol>
-<h2 id="不常见的一些算法"><a href="#不常见的一些算法" class="headerlink" title="不常见的一些算法"></a>不常见的一些算法</h2><ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> it = v.begin();</div><div class="line"><span class="keyword">while</span>(it!=v.end())&#123;</div><div class="line">    <span class="keyword">if</span>(condition)&#123;</div><div class="line">        it = v.erase(it);</div><div class="line">    &#125;</div><div class="line">  	<span class="keyword">else</span>&#123;</div><div class="line">        it++;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   这样的实现看起来不是很优雅，有没有优雅的方法呢？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 利用remove_if操作来进行</span></div><div class="line">v.erase(remove_if(v.begin(), v.end(), [](<span class="keyword">int</span> i)&#123;i&lt;<span class="number">3</span>;&#125;), v.end());</div></pre></td></tr></table></figure>
+<p>   这个有一个专门的名字叫做<a href="https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom" target="_blank" rel="external">erase-remove idiom</a></p>
+<p>   那么为什么同样是删除，这样的操作就可以呢？难道不改变vector的大小吗？事实上，主要的原因在于remove_if操作不是真正删除，而是将不满足条件的，将来不删除的放在vector的前面，而将所有满足条件的要删除的放置在vector后部，之后返回第一个要删除的元素的位置，然后erase直接就可以将这个位置到末尾所有的元素删除掉了。</p>
+<p>   这里还用到的一个知识点是，lambda函数，lambda我个人在Python里面用得多一些，平时刷题用C++的时候很少用到，同时GCC关于lambda函数似乎还有一个bug，可能需要在[]里面写上[this] 或者[&amp;]才行编译通过。还有一个就是，如果里面的3是一个局部变量怎么办？ 这个时候也会有编译问题的，解决的方法就是[this, temp]将temp名字放到[]中，或者干脆把temp设置为全局变量也可以实现。</p>
+<p>   ​</p>
+<h2 id="不常见的一些算法和数据结构"><a href="#不常见的一些算法和数据结构" class="headerlink" title="不常见的一些算法和数据结构"></a>不常见的一些算法和数据结构</h2><ol>
 <li><p>Morris Algorithm 该算法可以以O(1)的空间，O(N)的时间复杂度来对树进行中序遍历，当然也可以推广到前序和后序。利用了线索二叉树的性质。Thread binary tree.</p>
 </li>
 <li><p>Kadane’s algorithm</p>
@@ -430,6 +432,17 @@
 </li>
 <li><p>算法的思想比较简单，就是比较当前的大小，如果是负，那么意味着可以舍弃前面的和。在遍历的同时更新一个全局最大值。</p>
 </li>
+</ol>
+</li>
+</ol>
+<ol>
+<li>Binary Indexed Tree(Fenwich Tree)<ol>
+<li>time complexity: query and modification O(logn)</li>
+<li><img src="../uploads/binaryindexedtree.jpeg" alt="binaryindexedtree"></li>
+<li>所有的奇数位置的数字和原数组对应位置的相同，偶数位置是原数组若干位置之和</li>
+<li>如何确定某个位置到底是几个数组成，根据坐标的最低位Low Bit来决定</li>
+<li>最低位的计算方法有俩种： <code>x&amp;(x^(x-1))</code> 或者是<code>x&amp;-x</code></li>
+<li>这里的结构index必须从1开始，而<strong>不能从0开始</strong>，因为0&amp;-0还是0，并没有更新index, 像1&amp;-1=1, 2&amp;-2=2, 4&amp;-4=4, 也就是说C2, C4, C8都包含A1. (j+=j&amp;-j, 1+1=2, 2+2=4, 4+4=8)</li>
 </ol>
 </li>
 </ol>
@@ -694,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编程中的一些经验总结"><span class="nav-number">1.</span> <span class="nav-text">编程中的一些经验总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不常见的一些算法"><span class="nav-number">1.1.</span> <span class="nav-text">不常见的一些算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编程中的一些经验总结"><span class="nav-number">1.</span> <span class="nav-text">编程中的一些经验总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不常见的一些算法和数据结构"><span class="nav-number">1.1.</span> <span class="nav-text">不常见的一些算法和数据结构</span></a></li></ol></li></ol></div>
             
 
           </div>
