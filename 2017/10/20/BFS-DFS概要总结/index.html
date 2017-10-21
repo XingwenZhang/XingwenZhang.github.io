@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Tree," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="Discover the world, discover the heart">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="BFS, DFS最概要的总结转自stackoverflow DFS: 123456list nodes_to_visit = &amp;#123;root&amp;#125;;while( nodes_to_visit isn&apos;t empty ) &amp;#123;  currentnode = nodes_to_visit.take_first();  nodes_to_visit.prepend( currentn">
+<meta name="keywords" content="Tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS-DFS概要总结">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/BFS-DFS概要总结/index.html">
 <meta property="og:site_name" content="Angus&#39; MiniCraft">
-<meta property="og:description" content="Discover the world, discover the heart">
+<meta property="og:description" content="BFS, DFS最概要的总结转自stackoverflow DFS: 123456list nodes_to_visit = &amp;#123;root&amp;#125;;while( nodes_to_visit isn&apos;t empty ) &amp;#123;  currentnode = nodes_to_visit.take_first();  nodes_to_visit.prepend( currentn">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-25T02:27:34.000Z">
+<meta property="og:updated_time" content="2017-10-21T06:29:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="Discover the world, discover the heart">
+<meta name="twitter:title" content="BFS-DFS概要总结">
+<meta name="twitter:description" content="BFS, DFS最概要的总结转自stackoverflow DFS: 123456list nodes_to_visit = &amp;#123;root&amp;#125;;while( nodes_to_visit isn&apos;t empty ) &amp;#123;  currentnode = nodes_to_visit.take_first();  nodes_to_visit.prepend( currentn">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/20/BFS-DFS概要总结/"/>
 
 
 
 
 
-  <title>tags | Angus' MiniCraft</title>
+  <title>BFS-DFS概要总结 | Angus' MiniCraft</title>
   
 
 
@@ -279,40 +280,212 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/BFS-DFS概要总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MiniCraft">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                6 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/C/" style="font-size: 30px; color: #111">C++</a> <a href="/tags/Leetcode/" style="font-size: 12px; color: #ccc">Leetcode</a> <a href="/tags/Pointer/" style="font-size: 12px; color: #ccc">Pointer</a> <a href="/tags/TopCoder/" style="font-size: 30px; color: #111">TopCoder</a> <a href="/tags/Tree/" style="font-size: 12px; color: #ccc">Tree</a> <a href="/tags/指针/" style="font-size: 12px; color: #ccc">指针</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">BFS-DFS概要总结</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-20T23:28:08-07:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/20/BFS-DFS概要总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/20/BFS-DFS概要总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="BFS-DFS最概要的总结"><a href="#BFS-DFS最概要的总结" class="headerlink" title="BFS, DFS最概要的总结"></a>BFS, DFS最概要的总结</h1><p>转自stackoverflow</p>
+<p>DFS:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">list</span> nodes_to_visit = &#123;root&#125;;</div><div class="line"><span class="keyword">while</span>( nodes_to_visit isn't empty ) &#123;</div><div class="line">  currentnode = nodes_to_visit.take_first();</div><div class="line">  nodes_to_visit.prepend( currentnode.children );</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BFS:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">list</span> nodes_to_visit = &#123;root&#125;;</div><div class="line"><span class="keyword">while</span>( nodes_to_visit isn't empty ) &#123;</div><div class="line">  currentnode = nodes_to_visit.take_first();</div><div class="line">  nodes_to_visit.append( currentnode.children );</div><div class="line">  <span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意唯一的区别就是DFS是prepend,添加在最前。而BFS是append，添加在最后。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2017/10/20/BFS-DFS概要总结/" title="BFS-DFS概要总结">http://yoursite.com/2017/10/20/BFS-DFS概要总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tree/" rel="tag"># Tree</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/15/TopCoder-Mathematics/" rel="next" title="TopCoder-Mathematics">
+                <i class="fa fa-chevron-left"></i> TopCoder-Mathematics
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -321,6 +494,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -341,8 +525,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/selfie.jpg"
@@ -433,6 +626,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BFS-DFS最概要的总结"><span class="nav-number">1.</span> <span class="nav-text">BFS, DFS最概要的总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -573,10 +782,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -594,6 +803,18 @@
       <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/10/20/BFS-DFS概要总结/';
+          this.page.identifier = '2017/10/20/BFS-DFS概要总结/';
+          this.page.title = 'BFS-DFS概要总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
