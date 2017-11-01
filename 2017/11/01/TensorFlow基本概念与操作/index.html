@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TensorFlow,Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="TensorFlow 基本概念与操作 计算图  除了默认图之外，TF支持通过tf.Graph来生成新的。  可以用来隔离张量，运算等  1234567891011121314# Get default graphtf.get_default_graph()g1 = tf.Graph()with g1.as_default():    # Passwith tf.Session(graph=g1)">
+<meta name="keywords" content="TensorFlow,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow基本概念与操作">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/TensorFlow基本概念与操作/index.html">
+<meta property="og:site_name" content="Angus&#39; MineCraft">
+<meta property="og:description" content="TensorFlow 基本概念与操作 计算图  除了默认图之外，TF支持通过tf.Graph来生成新的。  可以用来隔离张量，运算等  1234567891011121314# Get default graphtf.get_default_graph()g1 = tf.Graph()with g1.as_default():    # Passwith tf.Session(graph=g1)">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-01T21:24:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow基本概念与操作">
+<meta name="twitter:description" content="TensorFlow 基本概念与操作 计算图  除了默认图之外，TF支持通过tf.Graph来生成新的。  可以用来隔离张量，运算等  1234567891011121314# Get default graphtf.get_default_graph()g1 = tf.Graph()with g1.as_default():    # Passwith tf.Session(graph=g1)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/01/TensorFlow基本概念与操作/"/>
+
+
+
+
+
+  <title>TensorFlow基本概念与操作 | Angus' MineCraft</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Angus' MineCraft</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Resources
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/TensorFlow基本概念与操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MineCraft">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TensorFlow基本概念与操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T14:23:30-07:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/01/TensorFlow基本概念与操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/01/TensorFlow基本概念与操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="TensorFlow-基本概念与操作"><a href="#TensorFlow-基本概念与操作" class="headerlink" title="TensorFlow 基本概念与操作"></a>TensorFlow 基本概念与操作</h1><ol>
+<li><p>计算图</p>
+<ol>
+<li><p>除了默认图之外，TF支持通过tf.Graph来生成新的。</p>
+</li>
+<li><p>可以用来隔离张量，运算等</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Get default graph</span></div><div class="line">tf.get_default_graph()</div><div class="line"></div><div class="line">g1 = tf.Graph()</div><div class="line"><span class="keyword">with</span> g1.as_default():</div><div class="line">    <span class="comment"># Pass</span></div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session(graph=g1) <span class="keyword">as</span> sess:</div><div class="line">    tf.global_variables_initializer().run()</div><div class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">"name"</span>, resue=<span class="keyword">True</span>):</div><div class="line">        <span class="keyword">pass</span></div><div class="line">    </div><div class="line"><span class="keyword">with</span> g1.device(<span class="string">'/gpu:0'</span>):</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1. 在一个计算图中，可以通过集合来管理不同的资源， 通过tf.add_to_collection将自愿加入一个或者多个集合中， 然后通过tf.get_collection来获取一个集合里面的所有资源。</div><div class="line"></div><div class="line">2. 常用的几个自动维护的集合</div><div class="line"></div><div class="line">   | 集合名称                                  | 集合内容                              | 使用场景                |</div><div class="line">   | ------------------------------------- | --------------------------------- | ------------------- |</div><div class="line">   | tf.GraphKeys.VARIABLES                | 所有变量(可以通过tf.all_variables来获取所有变量) | 持久化TensorFlow模型（存储） |</div><div class="line">   | tf.GraphKeys.TRAINABLE_VARIABLES      | 可学习的变量（参数）tf.trainable_variables  | 模型训练，生成模型可视化内容      |</div><div class="line">   | tf.GraphKeys.SUMMARIES                | 日志生成相关的张量                         | TF计算可视化             |</div><div class="line">   | tf.GraphKeys.QUEUE_RUNNERS            | 处理输入的QueueRunner                  | 输入处理                |</div><div class="line">   | tf.GraphKeys.MOVING_AVERAGE_VARIABLES | 所有计算了滑动平均值的变量                     | 计算变量的滑动平均值          |</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">1. 张量</div><div class="line">   1. 从功能的角度看，张量可以被简单理解为多维数组</div><div class="line">   2. 零阶张量-scalar, 一阶 vector， n 阶 n-matrix</div><div class="line">   3. tensorflow中的张量保存的是计算过程而不是结果， `Tensor(&quot;add:0&quot;, shape=(2,), dtype=float32)`, 保存了三个属性，名字，维度，类型。名字不仅是id，也是操作</div><div class="line">   4. 可以通过tensor.get_shape来获取convolution之后的维度，而不用自己去计算了。（engineer trick）</div><div class="line"></div><div class="line"></div><div class="line">1. 会话</div><div class="line"></div><div class="line">   1. 建议使用with context，不用担心异常之后leak或者忘记写close的尴尬</div><div class="line"></div><div class="line">   2. ```python</div><div class="line">      with tf.Session().as_default():</div></pre></td></tr></table></figure>
+<ol>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sess.run(tensor) </div><div class="line">tensor.eval(session=sess)功能一样</div></pre></td></tr></table></figure>
+</li>
+<li><p>交互式会话，适合jupyter调试 <code>tf.InteractiveSession()</code> 该方法默认将生成的会话注册为默认会话</p>
+</li>
+<li><p>无论哪种方法都可以通过ConfigProto Protocol Buffer来配置需要生成会话。 可以配置并行的线程数，GPU分配策略，运算超时时间。allow_soft_placement,用来配置GPU，true允许将GPU运算放在CPU算，log_device会记录每个节点在哪个设备上，来方便调试，生产环境可以设置为false</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">config = tf.ConfigProto(allow_soft_placement=<span class="keyword">True</span>,</div><div class="line">                       log_device_placement=<span class="keyword">True</span>)</div><div class="line">sess1 = tf.InteractiveSession(config=config)</div><div class="line">sess2 = tf.Session(config=config)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>变量初始化</p>
+<ol>
+<li><p>| Function            | 随机分布                            | 参数                  |<br>| ——————- | ——————————- | ——————- |<br>| tf.random_normal    | 正态分布                            | mean, stddev, dtype |<br>| tf.truncated_normal | 正态分布，如果随机出来的值偏离平均值超过2个标准差，则重新随机 |                     |<br>| tf.random_uniform   | 平均分布                            |                     |<br>| tf.random_gamma     | Gamma分布                         | alpha, beta         |</p>
+</li>
+<li><p>| Function    | 功能         |<br>| ———– | ———- |<br>| tf.zeros    |            |<br>| tf.ones     |            |<br>| tf.fill     | 全部为给定数值的数组 |<br>| tf.constant | 给定值常量      |</p>
+</li>
+<li><p>通过其他变量来初始化</p>
+<ol>
+<li>W2 = tf.Variable(weights.initialized_value())</li>
+</ol>
+</li>
+<li><p>维度在运行中是可能改变的，但是需要设置参数validate_shape=False</p>
+<p>W1 = 2, 3 w2 = 2, 2  tf.assign(w1, w2, validate_shape=False)</p>
+</li>
+<li><p>之所以使用placeholder而不用tf.constant，是因为constant每次需要生成一个节点插入到计算图中，而placeholder则只是一个节点，每次更新内容而已</p>
+</li>
+<li><p>如果选取batch_size的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">start = (i*batch_size) % dataset_size</div><div class="line">end = min(start + batch_size, dataset_size)</div><div class="line"></div><div class="line">feed_dict=&#123;x:X[start:end], y_: Y[start:end]&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>深层NN</p>
+<ol>
+<li><p>单层的Perceptron不具有异或的学习能力（Perceptrons: An introduction to computational geometry），但是加了隐藏层就有了该能力。DNN具有组合特征提取的功能，这个特性对于不易提取特征向量的问题，比如图片识别，语音识别有很大的帮助。</p>
+</li>
+<li><p>经典损失函数</p>
+<ol>
+<li><p>多分类问题：</p>
+<ol>
+<li><p>判断一个输出向量和期望的向量有多接近呢？cross entropy刻画了俩个概率分布之间的距离。是分类问题中使用比较广的一种损失函数。</p>
+</li>
+<li><p>为什么多分类一般需要softmax? 因为cross entropy刻画的是概率分布之间的距离，而神经网络的输出却不一定是一个概率分布。softmax就是将输出转化为概率分布的函数。原始的神经网络的输出被用作置信度来生成新的输出。从交叉熵的公式可以看到其是不对称的，刻画的是通过概率分布q来表达p的困难程度。所以当交叉熵作为神经网络的损失函数时，P代表的是正确答案，q代表的是预测值。H(p, q)= -plog(q)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">H((<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>), (<span class="number">0.5</span>,<span class="number">0.4</span>,<span class="number">0.1</span>)) = -(<span class="number">1</span>*log0<span class="number">.5</span> + <span class="number">0</span> + <span class="number">0</span>) = <span class="number">0.3</span></div><div class="line">H((<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>), (<span class="number">0.8</span>,<span class="number">0.1</span>,<span class="number">0.1</span>)) = <span class="number">0.1</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>因为交叉熵一般与softmax一起用，所以tensorflow提供了该函数封装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tf.nn.softmax_cross_entropy_with_logits(y, y_) <span class="comment"># y predict, y_ ground truth</span></div><div class="line">tf.nn.sparse_softmax_cross_entropy_with_logits 适用于只有一个正确答案</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>回归问题</p>
+<ol>
+<li><p>回归问题一般只有一个输出节点，常用的Loss为均方误差。 MSE</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mse = tf.reduce_mean(tf.square(y_ - y))</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>自定义损失函数</p>
+<ol>
+<li><p>有些时候需要根据问题自己去定义更加符合实际的损失函数，例如有些时候预测多了，比预测少了损失要小一些，这时用MSE就无法体现出多少的差别。</p>
+</li>
+<li><p>可以使用的函数有</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tf.reduce_sum(tf.select(tf.greater(v1, v2), func1, func2))</div></pre></td></tr></table></figure>
+<p>tf.select和tf.greater都是element-wise operation</p>
+</li>
+</ol>
+</li>
+<li><p>对于相同的神经网络不同的损失函数可以对训练得到的模型产生重要影响</p>
+</li>
+</ol>
+<p>​</p>
+</li>
+<li><p>优化算法</p>
+<ol>
+<li>GD vs SGD:<ol>
+<li>GD 在全部数据集上更新， SGD只在一条数据上更新，一般使用折中， batch GD。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>​</p>
+<p>​    </p>
+<ol>
+<li><p>学习率</p>
+<ol>
+<li><p>tf提供的学习率的设置方法： 指数衰减法。 tf.train.exponential_decay</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">tf.train.exponential_decay 实现了</div><div class="line">decayed_lr = lr * decay_rate^(global_step/ decay_step)</div><div class="line"></div><div class="line">decay_rate 衰减率 decay_step衰减速度，</div><div class="line">一般exponential_decay中如果staircase=<span class="keyword">False</span>,衰减是连续的</div><div class="line">如果是<span class="keyword">True</span>,则会对<span class="keyword">global</span>/decay取整，导致整个学习率是阶梯状的。如果将decay_step设置为all/batch_size,则表示每过一轮全部数据，学习率衰减一次，那么表示每轮中的所有数据的贡献率是一致的(因为lr一致)</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">global_step = tf.Variable(<span class="number">0</span>)</div><div class="line">lr = tf.train.exponential_decay(<span class="number">0.1</span>, global_step, <span class="number">100</span>, <span class="number">0.96</span>, staircase=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment"># 使用指数衰减学习率，在mini传入global_step将自动更新global 参数， 从而使得学习率也得到相应的更新</span></div><div class="line">train_step = tf.train.GradientDescentOptimizer(lr).minimize(loss, global_step=global_step)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>正则化</p>
+<ol>
+<li><p>L1, L2， L2不会让参数稀疏的原因在于当参数很小的时候，比如0.001那么的它的平方基本上就可以忽略不计了。于是模型不会进一步将这个参数调整为0. 实践中也可以结合L1, L2同时使用</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tf.contrib.layers.l2_regularizer(<span class="keyword">lambda</span>, w)</div><div class="line">或者不使用contrib使用tf.nn.l2_loss</div><div class="line">regularizer = tf.nn.l2_loss(w)</div><div class="line">loss = tf.reduce_mean(loss + <span class="keyword">lambda</span> * regularizer)</div></pre></td></tr></table></figure>
+</li>
+<li><p>更加general的写法，尤其当网络定于与损失函数的定义不在同一个文件或者不在同一个函数中的时候，此时采用collection更加方便</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_weight</span><span class="params">(shape, lambda)</span>:</span></div><div class="line">	var = tf.Variable(tf.random_normal(shape), dtype=tf.float32)</div><div class="line">    <span class="comment">#添加集合</span></div><div class="line">    tf.add_to_collection(<span class="string">'losses'</span>, tf.contrib.layers.l2_regularzier(labmda)(var))</div><div class="line">    <span class="keyword">return</span> var</div><div class="line"></div><div class="line">x = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">2</span>))</div><div class="line">y_ = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>,<span class="number">1</span>))</div><div class="line"></div><div class="line">batch_size = <span class="number">8</span></div><div class="line"><span class="comment"># 每层的节点数目</span></div><div class="line">layer_dimension = [<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">n_layers = len(layer_dimension)</div><div class="line"></div><div class="line">cur_layer = x</div><div class="line">in_dimension = layer_dimension[<span class="number">0</span>]</div><div class="line"><span class="comment">#循环构建网络</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n_layers):</div><div class="line">    out_dimension = layer_dimension[i]</div><div class="line">    </div><div class="line">    weight = get_weight([in_dimension, out_dimension], <span class="number">0.001</span>)</div><div class="line">    bias = tf.Variable(tf.constant(<span class="number">0.1</span>, shape=[out_dimension]))</div><div class="line">    </div><div class="line">    cur_layer = tf.nn.relu(tf.matmul(cur_layer, weight) + bias)</div><div class="line">    </div><div class="line">    in_dimension = layer_dimension[i]</div><div class="line">    </div><div class="line">    </div><div class="line">mse_loss = tf.reduce_mean(tf.square(y_ - cur_layer))</div><div class="line"><span class="comment">#添加集合</span></div><div class="line">tf.add_to_collection(<span class="string">'losses'</span>, mse_loss)</div><div class="line"><span class="comment">#将所有损失相加</span></div><div class="line">loss = tf.add_n(tf.get_collection(<span class="string">'losses'</span>))</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>滑动平均模型</p>
+<ol>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tf.train.ExponentialMovingAverage</div><div class="line"><span class="comment"># 提供decay, step, 维护一个shadown varialbe</span></div><div class="line">shadow_variable = decay * shadow_variable + (<span class="number">1</span>-decay) * variable</div></pre></td></tr></table></figure>
+</li>
+<li><p>从公式可以看到，decay越大模型越稳定。实际中，常取值0.999 或者 0.9999， 为了使模型在训练前期可以更新得更快， ExponentialMovingAverage还提供了num_updates参数来动态设置decay的大小， $min{decay, \cfrac{1+num_updates}{10+num_updates}}$</p>
+</li>
+<li><p>直接使用代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># todo</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2017/11/01/TensorFlow基本概念与操作/" title="TensorFlow基本概念与操作">http://yoursite.com/2017/11/01/TensorFlow基本概念与操作/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/算法积累三-数组和字符串-Algorithms-Array-and-String/" rel="next" title="算法积累三-数组和字符串 Algorithms-Array and String">
+                <i class="fa fa-chevron-left"></i> 算法积累三-数组和字符串 Algorithms-Array and String
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/selfie.jpg"
+               alt="Angus" />
+          <p class="site-author-name" itemprop="name">Angus</p>
+           
+              <p class="site-description motion-element" itemprop="description">Discover the world, discover the heart</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorFlow-基本概念与操作"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow 基本概念与操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Angus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/11/01/TensorFlow基本概念与操作/';
+          this.page.identifier = '2017/11/01/TensorFlow基本概念与操作/';
+          this.page.title = 'TensorFlow基本概念与操作';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
