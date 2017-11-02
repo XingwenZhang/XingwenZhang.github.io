@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="TensorFlow,python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="TensorFlow实例-MNISTData:MNIST link: http://yann.lecun.com/exdb/mnist 事实上TensorFlow提供了一个类来处理MNIST from tensorflow.examples.tutorials.mnist import input_data Code直接上代码， self-explain 123456789101112131415">
+<meta name="keywords" content="TensorFlow,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow实例-MNIST">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/TensorFlow实例-MNIST/index.html">
+<meta property="og:site_name" content="Angus&#39; MineCraft">
+<meta property="og:description" content="TensorFlow实例-MNISTData:MNIST link: http://yann.lecun.com/exdb/mnist 事实上TensorFlow提供了一个类来处理MNIST from tensorflow.examples.tutorials.mnist import input_data Code直接上代码， self-explain 123456789101112131415">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-02T03:49:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow实例-MNIST">
+<meta name="twitter:description" content="TensorFlow实例-MNISTData:MNIST link: http://yann.lecun.com/exdb/mnist 事实上TensorFlow提供了一个类来处理MNIST from tensorflow.examples.tutorials.mnist import input_data Code直接上代码， self-explain 123456789101112131415">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/01/TensorFlow实例-MNIST/"/>
+
+
+
+
+
+  <title>TensorFlow实例-MNIST | Angus' MineCraft</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Angus' MineCraft</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Resources
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/TensorFlow实例-MNIST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MineCraft">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TensorFlow实例-MNIST</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T20:49:17-07:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/01/TensorFlow实例-MNIST/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/01/TensorFlow实例-MNIST/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="TensorFlow实例-MNIST"><a href="#TensorFlow实例-MNIST" class="headerlink" title="TensorFlow实例-MNIST"></a>TensorFlow实例-MNIST</h1><h2 id="Data"><a href="#Data" class="headerlink" title="Data:"></a>Data:</h2><p>MNIST link: <a href="http://yann.lecun.com/exdb/mnist" target="_blank" rel="external">http://yann.lecun.com/exdb/mnist</a></p>
+<p>事实上TensorFlow提供了一个类来处理MNIST</p>
+<p>from tensorflow.examples.tutorials.mnist import input_data</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>直接上代码， self-explain</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </div><div class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</div><div class="line"></div><div class="line">input_node = <span class="number">784</span></div><div class="line">output_node = <span class="number">10</span></div><div class="line"></div><div class="line">layer1_node = <span class="number">500</span></div><div class="line">batch_size = <span class="number">100</span></div><div class="line"></div><div class="line">lr_base = <span class="number">0.8</span></div><div class="line">lr_decay = <span class="number">0.99</span></div><div class="line"></div><div class="line">regular_rate = <span class="number">1e-4</span></div><div class="line"></div><div class="line">training_steps = <span class="number">30000</span></div><div class="line"></div><div class="line">moving_average_decay = <span class="number">0.99</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">inference</span><span class="params">(input_tensor, avg_class, weight1, bias1, weight2, bias2)</span>:</span></div><div class="line">    <span class="comment"># 无滑动平均</span></div><div class="line">    <span class="keyword">if</span> avg_class = <span class="keyword">None</span>:</div><div class="line">        layer1 = tf.nn.relu(tf.matmul(input_tensor, weight1) + bias1)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> tf.matmul(layer1, weight2) + bias2</div><div class="line"></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        layer1 = tf.nn.relu(</div><div class="line">            tf.matmul(input_tensor, avg_class.average(weight1)) + </div><div class="line">            avg_class.average(bias1))</div><div class="line">        <span class="keyword">return</span> tf.matmul(layer1, avg_class.average(weight2)) +</div><div class="line">            avg_class.average(bias2)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(mnist)</span>:</span></div><div class="line">    x = tf.placeholder(tf.float32, [<span class="keyword">None</span>, input_node], name = <span class="string">'x-input'</span>)</div><div class="line">    y_ = tf.placeholder(tf.float32, [<span class="keyword">None</span>, output_node], name=<span class="string">'y-input'</span>)</div><div class="line">    weight1 = tf.Variable(tf.trauncated_normal([input_node, layer1_node], stddev = <span class="number">0.1</span>))</div><div class="line">    bias1 = tf.Variable(tf.constant(<span class="number">0.1</span>, shape=[layer1_node]))</div><div class="line"></div><div class="line">    weight2 = tf.Variable(tf.trauncated_normal([layer1_node, output_node], stddev = <span class="number">0.1</span>))</div><div class="line">    bias2 = tf.Variable(tf.constant(<span class="number">0.1</span>, shape=[output_node]))</div><div class="line"></div><div class="line"></div><div class="line">    y = inference(x, <span class="keyword">None</span>, weight1, bias1, weight2, bias2)</div><div class="line"></div><div class="line">    <span class="comment"># 定义存储训练轮数的变量，这个变量不需要计算滑动平均值， 所以这里指定这个变量为</span></div><div class="line">    <span class="comment"># 不可训练的变量</span></div><div class="line">    global_step = tf.Variable(<span class="number">0</span>, trainable=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    variable_average = tf.train.ExponentialMovingAverage(</div><div class="line">        moving_average_decay, global_step)</div><div class="line"></div><div class="line">    <span class="comment"># 在所有代表神经网络参数的变量上使用滑动平均。其他辅助变量就不需要了。</span></div><div class="line">    <span class="comment"># tf.trainable_varialbes返回的就是图上的集合 GraphKeys.TRAINABLE_VARIABLES</span></div><div class="line">    <span class="comment"># 中的元素</span></div><div class="line">    variable_average_op = variable_average.apply(</div><div class="line">        tf.trainable_variables())</div><div class="line"></div><div class="line">    average_y = inference(x, variable_average, weight1, bias1,</div><div class="line">        weight2, bias2)</div><div class="line"></div><div class="line">    <span class="comment">#为什么是y，不是average_y?</span></div><div class="line">    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(</div><div class="line">        logits=y, labels=tf.argmax(y_, <span class="number">1</span>))</div><div class="line"></div><div class="line">    cross_entropy_mean = tf.reduce_mean(cross_entropy)</div><div class="line"></div><div class="line">    <span class="comment"># L2 Loss</span></div><div class="line">    regularizer = tf.contrib.layers.l2_regularizer(regular_rate)</div><div class="line">    regularization = regularizer(weight1) + regularizer(weight2)</div><div class="line"></div><div class="line">    loss = cross_entropy_mean + regularization</div><div class="line"></div><div class="line">    <span class="comment"># 设定lr的衰减率, 每过一次全部数据，lr衰减一次</span></div><div class="line">    lr = tf.train.exponential_decay(</div><div class="line">        lr_base, global_step, mnist.train.num_examples/ batch_size,</div><div class="line">        lr_decay)</div><div class="line"></div><div class="line">    train_step = tf.train.GraidentDescentOptimizer(lr).minimize(loss, global_step=global_step)</div><div class="line"></div><div class="line">    <span class="comment">## 在训练神经网络模型时，每过一遍数据既需要通过反向传播来更新神经网络中的</span></div><div class="line">    <span class="comment"># 参数，又要更新每一个参数的滑动平均值。为了一次完成多个操作， TensorFlow</span></div><div class="line">    <span class="comment"># 提供了tf.control_dependencies 和 tf.group俩种机制。 下面俩行程序和</span></div><div class="line">    <span class="comment"># train_op = tf.group(train_step, variables_average_op)</span></div><div class="line">    <span class="keyword">with</span> tf.control_dependencies([train_step, variables_average_op]):</div><div class="line">        <span class="comment"># no_op 就是什么都不做的意思， 如其名</span></div><div class="line">        <span class="comment"># 我的理解就是把train_step与average绑定起来</span></div><div class="line">        train_op = tf.no_op(name=<span class="string">'train'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># argmax里面的1是代表维度，不要搞混</span></div><div class="line">    correct_prediction = tf.equal(tf.argmax(average_y, <span class="number">1</span>),</div><div class="line">        tf.argmax(y_, <span class="number">1</span>))</div><div class="line"></div><div class="line">    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</div><div class="line"></div><div class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">        tf.global_variables_initializer().run()</div><div class="line">        validate_feed = &#123;x : mnist.validation.images,</div><div class="line">                        y_: mnist.validation.labels&#125;</div><div class="line"></div><div class="line">        test_feed = &#123;x:mnist.test.images,</div><div class="line">                    y_:mnist.test.labels&#125;</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(training_steps):</div><div class="line">            <span class="keyword">if</span> i % <span class="number">1000</span> == <span class="number">0</span>:</div><div class="line">                validate_acc = sess.run(accuracy, feed_dict=validate_feed)</div><div class="line">                print(<span class="string">"after &#123;&#125; training steps, validation accuracy "</span>.format(i)</div><div class="line">                    <span class="string">"using average model is &#123;&#125;"</span>.format(validate_acc))</div><div class="line"></div><div class="line">            xs, ys = mnist.train.next_batch(batch_size)</div><div class="line">            sess.run(train_op, feed_dict=&#123;x:xs, y:ys&#125;)</div><div class="line"></div><div class="line">        test_acc = sess.run(accuracy, feed_dict=test_feed)</div><div class="line">        print(<span class="string">""</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    mnist = input_data.read_data_sets(<span class="string">'/tmp/data'</span>, one_hot=<span class="keyword">True</span>)</div><div class="line">    train(mnist)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    tf.app.run()</div></pre></td></tr></table></figure>
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>对结果的影响： 网络结构最重要，其他Moving average， regularization也会有或多或少的影响。</p>
+<h2 id="Improve"><a href="#Improve" class="headerlink" title="Improve"></a>Improve</h2><p>之前的定义inference的时候将所有的变量作为参数传入了函数。如果network层数增加就不方便这么写了。tf提供通过变量名称来创建或者获取一个变量的机制。函数： tf.get_variable和tf.variable_scope</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">v = tf.get_variable(<span class="string">'v'</span>, shape=[<span class="number">1</span>], initializer=tf.constant_initializer(<span class="number">1.0</span>))</div><div class="line">v = tf.Variable(tf.constant(<span class="number">1.0</span>, shape=[<span class="number">1</span>], name=<span class="string">'v'</span>))</div><div class="line"><span class="comment"># 相同功能</span></div></pre></td></tr></table></figure>
+<p>tf中的初始化函数与生成函数对应，只是多一个Initializer后缀</p>
+<p>tf.get_variable会根据名字去创建或者获取。通过tf.varialbe_scope来生成上下文，有点类似c++ namespace的意思。</p>
+<p>Plus: 变量name会有：0,表示这个变量是生成变量这个运算的第一个结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">inference</span><span class="params">(input_sensor, reuse=False)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">'layer1'</span>, reuse=reuse):</div><div class="line">        weight = tf.get_variable(<span class="string">'weight'</span>, [input_node, layer1_node],</div><div class="line">                               initializer=</div><div class="line">                                 tf.truncated_normal_initializer(stddev=<span class="number">0.1</span>))</div><div class="line">        bias = tf.get_variable(<span class="string">'bias'</span>, [layer1_node],</div><div class="line">                              initializer = </div><div class="line">                              tf.constant_initializer(<span class="number">0.0</span>))</div><div class="line">        layer1 = tf.nn.relu(tf.matmul(input_tensor, weight) + bias)</div><div class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">'layer2'</span>, reuse = reuse):</div><div class="line">        weight = tf.get_variable(<span class="string">'weight'</span>, [layer1_node, output_node],</div><div class="line">                                initializer = </div><div class="line">                                tf.truncated_normal_initializer(stddev=<span class="number">0.1</span>))</div><div class="line">        bias = tf.get_variable(<span class="string">'bias'</span>, [output_node],</div><div class="line">                               tf.constant_initializer(<span class="number">0.0</span>))</div><div class="line">        layer2 = tf.matmul(layer1, weight) + bias</div><div class="line">    <span class="keyword">return</span> layer2</div></pre></td></tr></table></figure>
+<h2 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h2><p>模型持久化。</p>
+<p><code>saver = tf.train.Saver()</code></p>
+<p><code>saver.save(sess, &#39;/path/model.ckpt&#39;)</code></p>
+<p>这个目录下会有三个文件，因为tf将计算图的结构和图上参数值分开保存。</p>
+<p>model.ckpt.meta :计算图结构</p>
+<p>Model.ckpt： 保存了tf中每一个变量的取值。</p>
+<p>checkpoint： 保存了一个目录下所有的模型文件列表。</p>
+<h2 id="Load"><a href="#Load" class="headerlink" title="Load"></a>Load</h2><p>加载</p>
+<p><code>saver = tf.train.Saver()</code></p>
+<p><code>saver.restore(sess, &#39;path/model.ckpt&#39;)</code></p>
+<p>注意直接加载参数值的话，还是需要事先定好与之前保存的同样的结构，但是不需要tf.global_varilabe_initializer()。</p>
+<p>加载之后可以通过张量的名字来获取张量</p>
+<p><code>print (sess.run(tf.get_default_graph().get_tensor_by_name(&#39;add:0&#39;)))</code></p>
+<p>直接加载图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">saver = tf.train.import_meta_graph(<span class="string">'path/model.ckpt/model.ckpt.meta'</span>)</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    saver.restore(sess, <span class="string">'path/model.ckpt'</span>)</div><div class="line">    <span class="keyword">print</span> (sess.run(tf.get_default_graph().get_tensor_by_name(<span class="string">'add:0'</span>)))</div></pre></td></tr></table></figure>
+<p>可以通过给Saver([v1])参数来指定保存的变量，也可以通过给字典参数来重命名被加载的变量与当前变量一致。saver = tf.train.Saver({‘v1’:v1, ‘v2’:v2})。</p>
+<p>这样的目的主要是为了方便使用滑动平均值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">ema = tf.train.ExponentialMovingAverage(<span class="number">0.99</span>)</div><div class="line">avg_op = ema.apply(tf.all_varialbes())</div><div class="line"></div><div class="line"><span class="keyword">for</span> var <span class="keyword">in</span> tf.all_variables():</div><div class="line">    print(var.name) <span class="comment"># v:0 v/ExponentialMovingAverage:0</span></div><div class="line">    </div><div class="line">saver = tf.train.Saver()</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    init_op = tf.global_varialbes_initializer()</div><div class="line">    sess.run(init_op)</div><div class="line">    </div><div class="line">    sess.run(tf.assign(v, <span class="number">10</span>))</div><div class="line">    sess.run(avg_op)</div><div class="line">    saver.save(sess, <span class="string">'path/model.ckpt'</span>)</div><div class="line">    </div><div class="line"></div><div class="line">saver = tf.train.Saver(&#123;<span class="string">'v/ExponentialMovingAverage'</span>:v&#125;)</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    saver.restore(sess, <span class="string">'path/model.ckpt'</span>)</div><div class="line">    <span class="keyword">print</span> sess.run(v)</div><div class="line">    </div><div class="line">    </div><div class="line">也可以这么操作</div><div class="line">saver = tf.train.Saver(ema.variables_to_restore())</div></pre></td></tr></table></figure>
+<p>tf提供了convert_variables_to_constant来将计算图中的变量以及取值通过常量的方式保存，这个整个tf计算图放在一个文件中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> tensorflow.python.framework <span class="keyword">import</span> graph_util</div><div class="line"></div><div class="line">v1 = tf.Variable(tf.constant(<span class="number">1.0</span>, shape=[<span class="number">1</span>]), name=<span class="string">'v1'</span>)</div><div class="line">v2 = tf.Variable(tf.constant(<span class="number">2.0</span>, shape=[<span class="number">1</span>]), name=<span class="string">'v2'</span>)</div><div class="line">result = v1 + v2</div><div class="line"></div><div class="line">init_op = tf.global_variables_initializer()</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    sess.run(init_op)</div><div class="line">    <span class="comment">#只需要这一部分就可以完成从输入层到输出层的计算过程了</span></div><div class="line">    graph_def = tf.get_default_graph().as_graph_def()</div><div class="line">    </div><div class="line">    output_graph_def = graph_util.convert_variables_to_constants(sess, graph_def, [<span class="string">'add'</span>])</div><div class="line">    </div><div class="line">    <span class="keyword">with</span> tf.gfile.GFile(<span class="string">'path/model.pb'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">        f.write(output_graph_def.SerializeToString())</div><div class="line">        </div><div class="line"></div><div class="line"><span class="keyword">from</span> tensorflow.python.platform <span class="keyword">import</span> gfile</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    model_filename = <span class="string">'path/model.pb'</span></div><div class="line">    <span class="keyword">with</span> gfile.FastGFile(model_filename, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</div><div class="line">        graph_def = tf.GraphDef()</div><div class="line">        graph_def.ParseFromString(f.read())</div><div class="line">        </div><div class="line">    result = tf.import_graph_def(graph_def, return_elements=[<span class="string">'add:0'</span>])</div><div class="line">    print(sess.run(result))</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2017/11/01/TensorFlow实例-MNIST/" title="TensorFlow实例-MNIST">http://yoursite.com/2017/11/01/TensorFlow实例-MNIST/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/01/TensorFlow基本概念与操作/" rel="next" title="TensorFlow基本概念与操作">
+                <i class="fa fa-chevron-left"></i> TensorFlow基本概念与操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/selfie.jpg"
+               alt="Angus" />
+          <p class="site-author-name" itemprop="name">Angus</p>
+           
+              <p class="site-description motion-element" itemprop="description">Discover the world, discover the heart</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorFlow实例-MNIST"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow实例-MNIST</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data"><span class="nav-number">1.1.</span> <span class="nav-text">Data:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">1.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis"><span class="nav-number">1.3.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Improve"><span class="nav-number">1.4.</span> <span class="nav-text">Improve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage"><span class="nav-number">1.5.</span> <span class="nav-text">Storage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load"><span class="nav-number">1.6.</span> <span class="nav-text">Load</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Angus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/11/01/TensorFlow实例-MNIST/';
+          this.page.identifier = '2017/11/01/TensorFlow实例-MNIST/';
+          this.page.title = 'TensorFlow实例-MNIST';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
