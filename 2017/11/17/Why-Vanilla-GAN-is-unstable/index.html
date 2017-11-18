@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{x \sim P_g}[log(1-D(x))]$    (1) Here $P_r$ is the real input distribution, $P_g">
+<meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{">
 <meta name="keywords" content="GAN,Theory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Why Vanilla GAN is unstable">
 <meta property="og:url" content="http://yoursite.com/2017/11/17/Why-Vanilla-GAN-is-unstable/index.html">
 <meta property="og:site_name" content="Angus&#39; MineCraft">
-<meta property="og:description" content="Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{x \sim P_g}[log(1-D(x))]$    (1) Here $P_r$ is the real input distribution, $P_g">
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-18T04:25:37.000Z">
+<meta property="og:updated_time" content="2017-11-18T04:31:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Why Vanilla GAN is unstable">
-<meta name="twitter:description" content="Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{x \sim P_g}[log(1-D(x))]$    (1) Here $P_r$ is the real input distribution, $P_g">
+<meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{">
 
 
 
@@ -375,7 +375,15 @@
       
 
       
-        <h1 id="Why-Vanilla-GAN-is-unstable"><a href="#Why-Vanilla-GAN-is-unstable" class="headerlink" title="Why Vanilla GAN is unstable"></a>Why Vanilla GAN is unstable</h1><h2 id="Loss-Functions-for-Gen-and-Dis"><a href="#Loss-Functions-for-Gen-and-Dis" class="headerlink" title="Loss Functions for Gen and Dis"></a>Loss Functions for Gen and Dis</h2><p>For Dis, its loss is:</p>
+        <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h1 id="Why-Vanilla-GAN-is-unstable"><a href="#Why-Vanilla-GAN-is-unstable" class="headerlink" title="Why Vanilla GAN is unstable"></a>Why Vanilla GAN is unstable</h1><h2 id="Loss-Functions-for-Gen-and-Dis"><a href="#Loss-Functions-for-Gen-and-Dis" class="headerlink" title="Loss Functions for Gen and Dis"></a>Loss Functions for Gen and Dis</h2><p>For Dis, its loss is:</p>
 <p>$dis<em>{loss}  = -E</em>{x \sim P<em>r}[logD(x)] - E</em>{x \sim P_g}[log(1-D(x))]$    (1)</p>
 <p>Here $P_r$ is the real input distribution, $P_g$ is the generator’s output</p>
 <p>For Generator, its loss is:</p>
