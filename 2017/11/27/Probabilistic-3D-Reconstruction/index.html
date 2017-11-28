@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TopCoder," />
+  <meta name="keywords" content="Deep Learning,3D Reconstruction," />
 
 
 
@@ -94,21 +94,28 @@
 
 
 
-<meta name="description" content="Mathematics for TopcodersPrimes优化1：比较范围只需要限制在sqrt(n) 优化2：偶数不存在质数（除了2），所以对从3开始check的时候，可以一次加2，而不是加1，也就是说只check奇数的因子。 如果只是这样的话，生成一个比较大范围的质数还是比较慢的，因为很多数计算了多次。 因此我们采用Sieve of Eratosthenes方法，思想很简单，将质数的倍数删掉">
-<meta name="keywords" content="TopCoder">
+<meta name="description" content="Probabilistic 3D Model ReconstructionTeam: Equilibrium Members:  Xingwen Zhang, xingwenz@usc.edu Qian Wang, wang215@usc.edu  Motivation3D reconstruction with a 2D image is an important CV problem for">
+<meta name="keywords" content="Deep Learning,3D Reconstruction">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TopCoder-Mathematics">
-<meta property="og:url" content="http://yoursite.com/2017/10/15/TopCoder-Mathematics/index.html">
+<meta property="og:title" content="Probabilistic 3D Reconstruction">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/Probabilistic-3D-Reconstruction/index.html">
 <meta property="og:site_name" content="Angus&#39; MineCraft">
-<meta property="og:description" content="Mathematics for TopcodersPrimes优化1：比较范围只需要限制在sqrt(n) 优化2：偶数不存在质数（除了2），所以对从3开始check的时候，可以一次加2，而不是加1，也就是说只check奇数的因子。 如果只是这样的话，生成一个比较大范围的质数还是比较慢的，因为很多数计算了多次。 因此我们采用Sieve of Eratosthenes方法，思想很简单，将质数的倍数删掉">
+<meta property="og:description" content="Probabilistic 3D Model ReconstructionTeam: Equilibrium Members:  Xingwen Zhang, xingwenz@usc.edu Qian Wang, wang215@usc.edu  Motivation3D reconstruction with a 2D image is an important CV problem for">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2017/10/15/TopCoder-Mathematics/picfolder/Pick-theorem.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/15/TopCoder-Mathematics/picfolder/base-convert.png">
-<meta property="og:updated_time" content="2017-10-15T22:48:19.000Z">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843757/input_v5p3jg.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843844/approach1_eynste.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843825/approach2_rkiknt.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843754/table_k7gflm.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843842/match_q2knbr.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843839/hiddeninfo_uqfraq.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843836/lstm-refine_pcyzmn.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843834/output_sift_qs1sk1.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843830/ROI_uns2gr.png">
+<meta property="og:updated_time" content="2017-11-28T04:43:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TopCoder-Mathematics">
-<meta name="twitter:description" content="Mathematics for TopcodersPrimes优化1：比较范围只需要限制在sqrt(n) 优化2：偶数不存在质数（除了2），所以对从3开始check的时候，可以一次加2，而不是加1，也就是说只check奇数的因子。 如果只是这样的话，生成一个比较大范围的质数还是比较慢的，因为很多数计算了多次。 因此我们采用Sieve of Eratosthenes方法，思想很简单，将质数的倍数删掉">
-<meta name="twitter:image" content="http://yoursite.com/2017/10/15/TopCoder-Mathematics/picfolder/Pick-theorem.png">
+<meta name="twitter:title" content="Probabilistic 3D Reconstruction">
+<meta name="twitter:description" content="Probabilistic 3D Model ReconstructionTeam: Equilibrium Members:  Xingwen Zhang, xingwenz@usc.edu Qian Wang, wang215@usc.edu  Motivation3D reconstruction with a 2D image is an important CV problem for">
+<meta name="twitter:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1511843757/input_v5p3jg.png">
 
 
 
@@ -137,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/15/TopCoder-Mathematics/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/27/Probabilistic-3D-Reconstruction/"/>
 
 
 
 
 
-  <title>TopCoder-Mathematics | Angus' MineCraft</title>
+  <title>Probabilistic 3D Reconstruction | Angus' MineCraft</title>
   
 
 
@@ -295,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/TopCoder-Mathematics/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/Probabilistic-3D-Reconstruction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Angus">
@@ -312,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TopCoder-Mathematics</h1>
+          <h1 class="post-title" itemprop="name headline">Probabilistic 3D Reconstruction</h1>
         
 
         <div class="post-meta">
@@ -324,8 +331,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-15T15:45:47-07:00">
-                2017-10-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-27T20:38:54-08:00">
+                2017-11-27
               </time>
             
 
@@ -335,28 +342,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Job-Hunting/" itemprop="url" rel="index">
-                    <span itemprop="name">Job Hunting</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -365,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/15/TopCoder-Mathematics/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/27/Probabilistic-3D-Reconstruction/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/15/TopCoder-Mathematics/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/27/Probabilistic-3D-Reconstruction/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,44 +385,57 @@
       
 
       
-        <h1 id="Mathematics-for-Topcoders"><a href="#Mathematics-for-Topcoders" class="headerlink" title="Mathematics for Topcoders"></a>Mathematics for Topcoders</h1><h2 id="Primes"><a href="#Primes" class="headerlink" title="Primes"></a>Primes</h2><p>优化1：比较范围只需要限制在sqrt(n)</p>
-<p>优化2：偶数不存在质数（除了2），所以对从3开始check的时候，可以一次加2，而不是加1，也就是说只check奇数的因子。</p>
-<p>如果只是这样的话，生成一个比较大范围的质数还是比较慢的，因为很多数计算了多次。</p>
-<p>因此我们采用Sieve of Eratosthenes方法，思想很简单，将质数的倍数删掉，剩下的就是质数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">bool* sieve(int n)&#123;</div><div class="line">  bool* prime = new bool[n+1];</div><div class="line">  for(int i=0; i&lt;=n; i++)&#123;</div><div class="line">    prime[i] = true;</div><div class="line">  &#125;</div><div class="line">  prime[0] = false;</div><div class="line">  prime[1] = false;</div><div class="line">  int m = sqrt(n);</div><div class="line">  </div><div class="line">  for(int i=2; i&lt;=m; i++)&#123;</div><div class="line">    if(prime[i])&#123;</div><div class="line">      for(int k=i*i; k&lt;=n; k+=i)&#123;</div><div class="line">        prime[k] = false;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return prime;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p>最简单的算法，就是从俩个数的较小的数开始，然后逐次减1.</p>
-<p>还有另一个更快的算法，Euclid’s algorithm,(其实就是我们说的辗转相除)</p>
-<p>具体到代码上就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int GCD(int a, int b)&#123;</div><div class="line">  if(b==0) return a;</div><div class="line">  return GCD(b, a%b);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>有了GCD的代码，求最小公倍数也就很简单了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int LCM(int a, int b)&#123;</div><div class="line">  return b*a/GCD(a,b);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h2><ol>
-<li>矩形相交的计算：这里一个点就是如何表示一个矩形，一般是存储左下以及右上。那么intersection就是max(x1,x3),max(y1,y3)和min(x2,x4),min(y2,y4)。之后再比较左下和右上的关系就可以确定到底有没有相交了。</li>
-<li>如何计算多边形相交的lattice points. Pick’s algorithm<ol>
-<li><img src="picfolder/Pick-theorem.png" alt="Pick&#39;s algorithm"></li>
-<li>公式是： Area= B/2 + i - 1, B是绿点数，i是红点数</li>
+        <h1 id="Probabilistic-3D-Model-Reconstruction"><a href="#Probabilistic-3D-Model-Reconstruction" class="headerlink" title="Probabilistic 3D Model Reconstruction"></a>Probabilistic 3D Model Reconstruction</h1><p>Team: Equilibrium</p>
+<p>Members:</p>
+<ul>
+<li>Xingwen Zhang, xingwenz@usc.edu</li>
+<li>Qian Wang, wang215@usc.edu</li>
+</ul>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>3D reconstruction with a 2D image is an important CV problem for robotics applications, such as manipulation, grasping and SLAM. However, robotics application has some specific necessity different from other computer vision tasks. The robot needs accurate 3D information for interacting, while there’re uncertain parts caused by occlusion or noise, the robot needs a probabilistic distribution of 3D structure, rather than one estimated result which may contain mistakes. We suggest a new method which can get high accuracy model in rich-information regions but the probabilistic model in occluded regions.</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843757/input_v5p3jg.png" style="zoom:70%"></p>
+<p>Reconstructing 3D model from a 2D image is an interesting topic. The reason why it’spossible is that we have prior knowledge of objects, so inferring missed informationfrom a 2D image is possible. However, the inference is not always accurate, since every specific object is somehow different from each other. Although we can get enough information of foresight surface for reconstruction, there’s always occluded surface we cannot accurately estimate. We need to represent those part with a probabilistic model for robot decision to avoid mistakes, but recent work can only get deterministic models, in which we cannot distinguish rich information regions (e.g.foresight surface) with low information regions (e.g. back-sight surface).</p>
+<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><p>The overall approach is as follows:</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843844/approach1_eynste.png" style="zoom:50%"></p>
+<p>For initial 2D to 3D reconstruction method, we chose a LSTM basedmethod names 3D-R2N2. We use this method for two reasons: </p>
+<ol>
+<li>Recurrent network means we can generatemultiple different reconstruction results given different input information, which can help us to get result with different resolution to generate pyramid. </li>
+<li>This structure can use different gate to receive image from different view point, that means perhaps we can combine this network with our refining network which is used to improve resolution.</li>
 </ol>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843825/approach2_rkiknt.png" style="zoom:70%"></p>
+<p>For visible surface detection, we simply use standard method(Visible Surface Detection) and label visible voxels. All those voxels are matched with relevant regions in raw 2d image.</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><h3 id="What-has-been-done-previously"><a href="#What-has-been-done-previously" class="headerlink" title="What has been done previously"></a>What has been done previously</h3><p>There already several methods about the 3D reconstruction with single image or multiple image, one of the latest work is called <em>Hierarchical surface Prediction for 3D object reconstruction</em>, it divides the voxel types into three parts, empty, occupied and partial occupied, which is different from the other that divide voxel into two types, empty and occupied. This method could improve the accuracy of reconstructed 3D model. </p>
+<p>At the same time, the basic method we use in this project is called 3d-r2n2, it is a unified multiple views and single view 3D reconstruction model. It could get pretty impressed results especially in multiple views. </p>
+<h3 id="The-new-part-in-our-project"><a href="#The-new-part-in-our-project" class="headerlink" title="The new part in our project"></a>The new part in our project</h3><p>In our project, we step into the refinement of the reconstructed model. The aim of our project is to the refine the visible part of the reconstructed model, which could be useful in the future application like the robotic arm caption. </p>
+<p>The first step for our project is to achieve the baseline method to reconstruct the 3D model. and then label  visible parts of the model corresponding to input image, then we refine the visible part of the 3D model. </p>
+<p>We use part of ShapeNet data as input of the model and reconstruct its 3D model, then take use of visible surface detection methods to show the visible part of the model and color it green.</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843754/table_k7gflm.png" style="zoom:100%"></p>
+<h2 id="Refine-the-model"><a href="#Refine-the-model" class="headerlink" title="Refine the model"></a>Refine the model</h2><p>Given a roughly reconstructed 3D model, we now consider how to refine its visible surface. Using rendering technology in computer graphics, it is easy to find corresponding region in raw image for every voxel in 3D model. </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843842/match_q2knbr.png" style="zoom:50%"></p>
+<p>Given this region, what can we do with it? A natural idea is directly training a refining network with local raw image input and refined model output. The hypothesis behind this method is that given rough surface and raw image, it is possible to get (implicit/hidden) light and texture information by comparing them, </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843839/hiddeninfo_uqfraq.png" style="zoom:50%"></p>
+<p>Then we can use this information and raw image to generate a refined 3D model. We designed a recurrent network model for that based on this hypothesis. But this approach is unstable because the hypothesis is not always correct. </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843836/lstm-refine_pcyzmn.png" style="zoom:50%"></p>
+<p>Another idea is introducing stereo. Stereo method applies key points detection and match them between two images to generate 3D reconstruction, </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843834/output_sift_qs1sk1.png" style="zoom:70%"></p>
+<p>But the reconstruction is sparse caused by the sparsity of invariant key points. However, our roughly reconstructed 3D model can work here, since the 3D reconstruction of 2 images is unique and matching a same voxel to different image can constrain matching regions.</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1511843830/ROI_uns2gr.png" style="zoom:50%"></p>
+<p>That makes it is possible to use variant features as key points, which is impossible in global image because of too many reduplicate candidates. </p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Although there are still a lot of work need to do, we think this could be a valueble way to improve the method about the 3D reconstruction within robotics field. The method presents a possible direction to refine the reconstructed model and improve the partial accuracy of the 3D model. </p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p>Choy, Christopher B., et al. “3d-r2n2: A unified approach for single and multi-view 3d object reconstruction.” European Conference on Computer Vision. Springer International Publishing, 2016.</p>
+</li>
+<li><p>Häne, Christian, Shubham Tulsiani, and Jitendra Malik. “Hierarchical Surface Prediction for 3D Object Reconstruction.” arXiv preprint arXiv:1704.00710 (2017).</p>
+</li>
+<li><p>Rezende, Danilo Jimenez, et al. “Unsupervised learning of 3d structure from images.” Advances in Neural Information Processing Systems. 2016.</p>
+</li>
+<li><p>Tatarchenko, Maxim, Alexey Dosovitskiy, and Thomas Brox. “Multi-view 3d models from single images with a convolutional network.” European Conference on Computer Vision. Springer International Publishing, 2016.</p>
+</li>
+<li><p>Riegler, Gernot, Ali Osman Ulusoys, and Andreas Geiger. “Octnet: Learning deep 3d representations at high resolutions.” arXiv preprint arXiv:1611.05009 (2016).</p>
+</li>
+<li><p>Girdhar, Rohit, et al. “Learning a predictable and generative vector representation for objects.” European Conference on Computer Vision. Springer International Publishing, 2016.</p>
+<p>​</p>
 </li>
 </ol>
-<ol>
-<li>欧拉公式（Euler’s formula)<ol>
-<li>V-E+F = 2, V是顶点数，E是边数，F是面数，一个正方形，俩条对角线相连，V是5， E是8， F是5，最外头也算一个面。</li>
-</ol>
-</li>
-</ol>
-<h2 id="Bases"><a href="#Bases" class="headerlink" title="Bases"></a>Bases</h2><p>进制问题。</p>
-<ol>
-<li>其他进制转10进制：就是将每位数字乘以进制之后相加。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int toDecimal(int n, int base)&#123;</div><div class="line">  int multi = 1;</div><div class="line">  int result = 0;</div><div class="line">  while(n&gt;0)&#123;</div><div class="line">    result += n%base * multi;</div><div class="line">    multi *= base;</div><div class="line">    n = n/10;</div><div class="line">  &#125;</div><div class="line">  return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>10进制转其他进制，小于10的: 这个就是除以对应进制，之后的余数逆序即可</li>
-</ol>
-<p><img src="picfolder/base-convert.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int fromDecimal(int n, int base)&#123;</div><div class="line">  int multi=1;</div><div class="line">  int res = 0;</div><div class="line">  while(n&gt;0)&#123;</div><div class="line">    res += n%base * multi;</div><div class="line">    multi *= 10;</div><div class="line">    n = n/base;</div><div class="line">  &#125;</div><div class="line">  return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>以及从10进制转到11-20</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int fromDecimal2(int n, int base)&#123;</div><div class="line">  string chars=&quot;0123456789ABCDEFGHIJ&quot;;</div><div class="line">  string res=&quot;&quot;;</div><div class="line">  while(n&gt;0)&#123;</div><div class="line">    res = chars[n%base] + res;</div><div class="line">    n = n / base;</div><div class="line">  &#125;</div><div class="line">  return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Fractions-and-Complex-Numbers"><a href="#Fractions-and-Complex-Numbers" class="headerlink" title="Fractions and Complex Numbers"></a>Fractions and Complex Numbers</h2><p>这个主要是表示问题，当然可以自定义相应的类。但实际中，可以使用pair来完成存储，更加简单快捷。</p>
 
       
     </div>
@@ -487,7 +485,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/2017/10/15/TopCoder-Mathematics/" title="TopCoder-Mathematics">http://yoursite.com/2017/10/15/TopCoder-Mathematics/</a>
+    <a href="http://yoursite.com/2017/11/27/Probabilistic-3D-Reconstruction/" title="Probabilistic 3D Reconstruction">http://yoursite.com/2017/11/27/Probabilistic-3D-Reconstruction/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -502,7 +500,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TopCoder/" rel="tag"># TopCoder</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/3D-Reconstruction/" rel="tag"># 3D Reconstruction</a>
           
         </div>
       
@@ -515,8 +515,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/04/TopCoder-How-to-find-a-solution/" rel="next" title="TopCoder-How to find a solution">
-                <i class="fa fa-chevron-left"></i> TopCoder-How to find a solution
+              <a href="/2017/11/17/Why-Vanilla-GAN-is-unstable/" rel="next" title="Why Vanilla GAN is unstable">
+                <i class="fa fa-chevron-left"></i> Why Vanilla GAN is unstable
               </a>
             
           </div>
@@ -524,10 +524,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/BFS-DFS概要总结/" rel="prev" title="BFS-DFS概要总结">
-                BFS-DFS概要总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -697,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mathematics-for-Topcoders"><span class="nav-number">1.</span> <span class="nav-text">Mathematics for Topcoders</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Primes"><span class="nav-number">1.1.</span> <span class="nav-text">Primes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">1.2.</span> <span class="nav-text">GCD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Geometry"><span class="nav-number">1.3.</span> <span class="nav-text">Geometry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bases"><span class="nav-number">1.4.</span> <span class="nav-text">Bases</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fractions-and-Complex-Numbers"><span class="nav-number">1.5.</span> <span class="nav-text">Fractions and Complex Numbers</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Probabilistic-3D-Model-Reconstruction"><span class="nav-number">1.</span> <span class="nav-text">Probabilistic 3D Model Reconstruction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approach"><span class="nav-number">1.2.</span> <span class="nav-text">Approach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">1.3.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-has-been-done-previously"><span class="nav-number">1.3.1.</span> <span class="nav-text">What has been done previously</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-new-part-in-our-project"><span class="nav-number">1.3.2.</span> <span class="nav-text">The new part in our project</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refine-the-model"><span class="nav-number">1.4.</span> <span class="nav-text">Refine the model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.6.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -867,9 +863,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/10/15/TopCoder-Mathematics/';
-          this.page.identifier = '2017/10/15/TopCoder-Mathematics/';
-          this.page.title = 'TopCoder-Mathematics';
+          this.page.url = 'http://yoursite.com/2017/11/27/Probabilistic-3D-Reconstruction/';
+          this.page.identifier = '2017/11/27/Probabilistic-3D-Reconstruction/';
+          this.page.title = 'Probabilistic 3D Reconstruction';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://angus0428.disqus.com/embed.js';

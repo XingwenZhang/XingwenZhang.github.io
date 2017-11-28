@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Angus&#39; MineCraft">
 <meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-18T04:31:36.000Z">
+<meta property="og:updated_time" content="2017-11-18T04:38:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Why Vanilla GAN is unstable">
 <meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Why Vanilla GAN is unstableLoss Functions for Gen and DisFor Dis, its loss is: $dis{loss}  = -E{x \sim Pr}[logD(x)] - E{">
@@ -384,11 +384,11 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </script>
 
 <h1 id="Why-Vanilla-GAN-is-unstable"><a href="#Why-Vanilla-GAN-is-unstable" class="headerlink" title="Why Vanilla GAN is unstable"></a>Why Vanilla GAN is unstable</h1><h2 id="Loss-Functions-for-Gen-and-Dis"><a href="#Loss-Functions-for-Gen-and-Dis" class="headerlink" title="Loss Functions for Gen and Dis"></a>Loss Functions for Gen and Dis</h2><p>For Dis, its loss is:</p>
-<p>$dis<em>{loss}  = -E</em>{x \sim P<em>r}[logD(x)] - E</em>{x \sim P_g}[log(1-D(x))]$    (1)</p>
+<p>$dis<em>{loss}  = -E</em>{x \sim P<em>r}[logD(x)] - E</em>{x \sim P_g}[log(1-D(x))]$   (1)</p>
 <p>Here $P_r$ is the real input distribution, $P_g$ is the generator’s output</p>
 <p>For Generator, its loss is:</p>
-<p>$gen<em>{loss} = E</em>{x \sim P_g}[log(1-D(x))]$    (2)</p>
-<p>$gen<em>{loss} = E</em>{x \sim P_g}[-logD(x)]$   (3)</p>
+<p>$$ gen<em>{loss} = E</em>{x \sim P_g}[log(1-D(x))] ​$$    (2)</p>
+<p>$$ gen<em>{loss} = E</em>{x \sim P_g}[-logD(x)] $$   (3)</p>
 <p>(2) is the original one, (3) is the improved one.</p>
 <h2 id="The-problem-in-1-and-2"><a href="#The-problem-in-1-and-2" class="headerlink" title="The problem in (1) and (2)"></a>The problem in (1) and (2)</h2><p>Conclusion: the better the discriminator, the worse the generator(worse means gradient vanishment)</p>
 <p>For (1), if the Gen is fixed, then the optimal Dis is:</p>
@@ -502,6 +502,10 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/11/27/Probabilistic-3D-Reconstruction/" rel="prev" title="Probabilistic 3D Reconstruction">
+                Probabilistic 3D Reconstruction <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -584,7 +588,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -606,7 +610,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
