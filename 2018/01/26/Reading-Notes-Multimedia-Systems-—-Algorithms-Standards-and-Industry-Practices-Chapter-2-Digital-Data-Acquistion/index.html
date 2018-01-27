@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Multimedia System," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion1. Analog and Digital SignalsAnalog: captured by recording devices, represented by a">
+<meta name="keywords" content="Multimedia System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion">
+<meta property="og:url" content="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/index.html">
+<meta property="og:site_name" content="Angus&#39; MineCraft">
+<meta property="og:description" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion1. Analog and Digital SignalsAnalog: captured by recording devices, represented by a">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516755032/quantization_sample.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516759202/bit_rates.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516783393/fourier_transform1.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516849559/useful%20signals.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516853391/digital%20filter.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516908018/filter_image.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516908021/practical_fiter.png">
+<meta property="og:updated_time" content="2018-01-27T07:13:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion">
+<meta name="twitter:description" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion1. Analog and Digital SignalsAnalog: captured by recording devices, represented by a">
+<meta name="twitter:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516755032/quantization_sample.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/"/>
+
+
+
+
+
+  <title>[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion | Angus' MineCraft</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Angus' MineCraft</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Resources
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MineCraft">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T23:09:00-08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion"><a href="#Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion" class="headerlink" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion"></a>[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion</h2><h3 id="1-Analog-and-Digital-Signals"><a href="#1-Analog-and-Digital-Signals" class="headerlink" title="1. Analog and Digital Signals"></a>1. Analog and Digital Signals</h3><p>Analog: captured by recording devices, represented by a continuous function.</p>
+<p>Digital: discrete set of values</p>
+<p>Digital’s advantages over analog:</p>
+<ol>
+<li>convinent for handling</li>
+<li>Store without degradation(quality)</li>
+<li>efficiently compress and transmit</li>
+<li>easy to store</li>
+</ol>
+<h2 id="2-Analog-to-digital-conversion"><a href="#2-Analog-to-digital-conversion" class="headerlink" title="2. Analog to digital conversion"></a>2. Analog to digital conversion</h2><ol>
+<li>sampling</li>
+<li>Quantization</li>
+</ol>
+<p>digtial to analog: <strong><em>interpolation</em></strong></p>
+<h3 id="2-1-Sampling"><a href="#2-1-Sampling" class="headerlink" title="2.1 Sampling"></a>2.1 Sampling</h3><p>$x_s(n) = x(nT)$</p>
+<p>T is the period, and 1/T is the frequency.</p>
+<p>If T is too big, then it is artifact(error in signal processing)</p>
+<p>Too small, need large amount of storage</p>
+<p>In practical, sampling is always with filtering.</p>
+<h3 id="2-2-Quantization"><a href="#2-2-Quantization" class="headerlink" title="2.2 Quantization"></a>2.2 Quantization</h3><p>It means how many bits to represent the number of samples.</p>
+<p>$x_q(n) = Q[x_s(n)]$</p>
+<p>Q is a rounding function that maps the continus value $x_s(n)$ to the nearest digital value using b bits. </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516755032/quantization_sample.png" alt="Quantization Sample"></p>
+<p>From the pic, diff bits could get diff precision.</p>
+<p>Uniform quantization intervals vs Ununiform qunatization itervals</p>
+<p>Sometimes, we want to give diff signals diff weights.</p>
+<h3 id="2-3-Bit-Rate"><a href="#2-3-Bit-Rate" class="headerlink" title="2.3 Bit Rate"></a>2.3 Bit Rate</h3><p>Definition: number of bits being produced per second.<br>$$<br>Bit Rate = \cfrac{Bits}{Second}=(\cfrac{Samples\ produced}{Second}) * (\cfrac{Bits}{Sample}) \</p>
+<p>=Sampling\ rate * Quantization\ bits\ per\ sample<br>$$<br><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516759202/bit_rates.png" alt="typical bit rate"></p>
+<h2 id="3-Signals-and-systems"><a href="#3-Signals-and-systems" class="headerlink" title="3. Signals and systems"></a>3. Signals and systems</h2><h3 id="3-1-Linear-Time-Invariant-Systems（LTI-sys）"><a href="#3-1-Linear-Time-Invariant-Systems（LTI-sys）" class="headerlink" title="3. 1 Linear Time Invariant Systems（LTI sys）"></a>3. 1 Linear Time Invariant Systems（LTI sys）</h3><p>$$<br>If\ \ x(t) = c_1x_1(t) + c_2x_2(t) \<br>then\ \ y(t) = c_1y_1(t) + c_2y_2(t) \<br>where\ y_k(t)\ is\ the\ sole\ output\ resulting\ from\ x_k(t)<br>$$</p>
+<p><strong>Convolution</strong> of two signals f and g is mathematically represented by f<em>g. It is the result of taking the integral of the first signal multiplied with the other signal reversed and shifted.<br>$$<br>\begin{aligned}<br>(f</em>g) &amp;= \int<em>{-\infty}^{\infty} f(\tau) \cdot \ g(t-\tau)d\tau \<br>&amp;= \int</em>{-\infty}^{\infty} f(t-\tau) \cdot g(\tau)d\tau<br>\end{aligned}<br>$$</p>
+<h3 id="3-2-Fundamental-Results-in-Linear-Time-Invariant-Systems"><a href="#3-2-Fundamental-Results-in-Linear-Time-Invariant-Systems" class="headerlink" title="3.2 Fundamental Results in Linear Time Invariant Systems"></a>3.2 Fundamental Results in Linear Time Invariant Systems</h3><p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516783393/fourier_transform1.png" alt=""></p>
+<h3 id="3-3-Useful-Signals"><a href="#3-3-Useful-Signals" class="headerlink" title="3.3 Useful Signals"></a>3.3 Useful Signals</h3><p>Delta function, box function, step function. </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516849559/useful%20signals.png" alt="functions"></p>
+<h3 id="3-4-The-Fourier-Transform"><a href="#3-4-The-Fourier-Transform" class="headerlink" title="3.4 The Fourier Transform"></a>3.4 The Fourier Transform</h3><p>Every periodic, continus singal can be expressed as a weighted combination of sinusoid(sine and cosine) waves. </p>
+<h2 id="4-Sampling-theorem-and-aliasing"><a href="#4-Sampling-theorem-and-aliasing" class="headerlink" title="4 Sampling theorem and aliasing"></a>4 Sampling theorem and aliasing</h2><p>The relation between signals and sampling rate: <strong>Nyquist theorem</strong></p>
+<p><strong>The signal has to be sampled using a sampling frequency that is greater than twice the maximal frequency occuring in the signal. </strong></p>
+<p>If sampling freq is higher than Nyquist frequency? nothing special, it cannot reproduce the analog signal better.</p>
+<p>What if lower? Cannot reproduce the original analog signal. Called <strong><em>aliasing.</em></strong></p>
+<p>Aliasing: loss of info during digitization.</p>
+<h3 id="4-1-Aliasing-in-Spatial-Domains"><a href="#4-1-Aliasing-in-Spatial-Domains" class="headerlink" title="4.1 Aliasing in Spatial Domains"></a>4.1 Aliasing in Spatial Domains</h3><p>cannot reconstruct or blur.</p>
+<h3 id="4-2-Aliasing-in-Temporal-Domains"><a href="#4-2-Aliasing-in-Temporal-Domains" class="headerlink" title="4.2 Aliasing in Temporal Domains"></a>4.2 Aliasing in Temporal Domains</h3><p><strong>Wagon wheel effect</strong> This occurs because the movie camera has under sampled the wheels’ motion.</p>
+<h2 id="5-Filtering"><a href="#5-Filtering" class="headerlink" title="5 Filtering"></a>5 Filtering</h2><ol>
+<li>Analog and 2. digital</li>
+</ol>
+<p>e.g human voice: 4kHz sampling rate, use analog filter between microphone and recording device, then the resulting signal is then sampled at 8kHz.</p>
+<h3 id="5-1-Digital-Filters"><a href="#5-1-Digital-Filters" class="headerlink" title="5.1 Digital Filters"></a>5.1 Digital Filters</h3><p>Analog filter: use analog electroic circuits made up from components such as resistors, capacitors, and operational amplifiers to produce the required filtering effect(in special range of freq). </p>
+<p>Used in noise reduction, video signal enhancement, graphic equalizers in hi-fi systems. </p>
+<p>Digital filter: </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516853391/digital%20filter.png" alt="digital filter"></p>
+<p>input and output for digital filter are both digital signals.</p>
+<p>Advantages over analog filter:</p>
+<ol>
+<li>Programmable, easy to change.</li>
+<li>easy to design, test, and implement.</li>
+<li>combined in parallel or cascaded in series.</li>
+<li>stable</li>
+<li>can handle low-frequency signals accurately. Also it could be applied in high-frequency signals in RF(radio frequency(used to be handled by analog filter))</li>
+<li>Versatile. diff ways, diff types</li>
+</ol>
+<p>Three categories:</p>
+<p>Low-pass filter: remove high-freq, avoid aliasing artifacts while sampling.</p>
+<p>Band-pass filter: only signals in defined band. </p>
+<p>high-pass filter: remove low-freq, enhance edges and sharpen an image.</p>
+<h3 id="5-2-Filtering-in-1D"><a href="#5-2-Filtering-in-1D" class="headerlink" title="5.2 Filtering in 1D"></a>5.2 Filtering in 1D</h3><p>…</p>
+<h3 id="5-3-Filtering-in-2D"><a href="#5-3-Filtering-in-2D" class="headerlink" title="5.3 Filtering in 2D"></a>5.3 Filtering in 2D</h3><p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516908018/filter_image.png" alt=""></p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516908021/practical_fiter.png" alt=""></p>
+<p>From the diff between ideal and practical filters: that’s the reason for which choose 44kHz, rather than exactly 40kHz sample rate. (human ear range 20Hz to 20kHz)</p>
+<h3 id="5-4-Subsampling"><a href="#5-4-Subsampling" class="headerlink" title="5.4 Subsampling"></a>5.4 Subsampling</h3><p>subsampling is a specific type of filter.</p>
+<p>Subsampling an origianl signal by n: keep every $n^{th}$ sample and remove all the rest from the original singal. Consequnently, the size of data is also reduced by a factor of n. </p>
+<p>Original m, after subsampling by n, then data size: m/n</p>
+<p>subsampling might cause aliasing problem, prior to subsampling, <strong>low-pass digital filter</strong> could help to fix this problem.(why?)</p>
+<h2 id="6-Fourier-Theory"><a href="#6-Fourier-Theory" class="headerlink" title="6 Fourier Theory"></a>6 Fourier Theory</h2><p>A clear explanazation for FT(in Chinese): <a href="https://zhuanlan.zhihu.com/p/19763358" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/19763358</a><br>$$<br>f(t) = \sum_{i=0}^{i=\infty} A<em>i \times sin(i \omega t) + \sum</em>{j=0}^{j=\infty} B_j \times cos(j \omega t)<br>$$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion">http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Multimedia-System/" rel="tag"># Multimedia System</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-1-Introducation-to-Multimedia/" rel="next" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 1 Introducation to Multimedia">
+                <i class="fa fa-chevron-left"></i> [Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 1 Introducation to Multimedia
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/" rel="prev" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me">
+                [Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/selfie.jpg"
+               alt="Angus" />
+          <p class="site-author-name" itemprop="name">Angus</p>
+           
+              <p class="site-description motion-element" itemprop="description">只要思想不滑坡，办法总比困难多</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion"><span class="nav-number">1.</span> <span class="nav-text">[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Analog-and-Digital-Signals"><span class="nav-number">1.1.</span> <span class="nav-text">1. Analog and Digital Signals</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Analog-to-digital-conversion"><span class="nav-number">2.</span> <span class="nav-text">2. Analog to digital conversion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Sampling"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Sampling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Quantization"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Quantization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Bit-Rate"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Bit Rate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Signals-and-systems"><span class="nav-number">3.</span> <span class="nav-text">3. Signals and systems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Linear-Time-Invariant-Systems（LTI-sys）"><span class="nav-number">3.1.</span> <span class="nav-text">3. 1 Linear Time Invariant Systems（LTI sys）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Fundamental-Results-in-Linear-Time-Invariant-Systems"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Fundamental Results in Linear Time Invariant Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Useful-Signals"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Useful Signals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-The-Fourier-Transform"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 The Fourier Transform</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Sampling-theorem-and-aliasing"><span class="nav-number">4.</span> <span class="nav-text">4 Sampling theorem and aliasing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Aliasing-in-Spatial-Domains"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Aliasing in Spatial Domains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Aliasing-in-Temporal-Domains"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Aliasing in Temporal Domains</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Filtering"><span class="nav-number">5.</span> <span class="nav-text">5 Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Digital-Filters"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Digital Filters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Filtering-in-1D"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Filtering in 1D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Filtering-in-2D"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Filtering in 2D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Subsampling"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Subsampling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Fourier-Theory"><span class="nav-number">6.</span> <span class="nav-text">6 Fourier Theory</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Angus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/';
+          this.page.identifier = '2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/';
+          this.page.title = '[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

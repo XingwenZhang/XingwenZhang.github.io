@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Multimedia System," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Media Formats1 Digital Image1.1 Digital Representation of imagsimage: width, heigh">
+<meta name="keywords" content="Multimedia System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me">
+<meta property="og:url" content="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/index.html">
+<meta property="og:site_name" content="Angus&#39; MineCraft">
+<meta property="og:description" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Media Formats1 Digital Image1.1 Digital Representation of imagsimage: width, heigh">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516945300/half_tone.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516945772/alpha_channel.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516950677/image_format1.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516950677/image_format2.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517020776/subsample_ratio.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517021362/Analog_Format.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517021892/digital_format.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517034601/audio_format1.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517034602/audio_format2.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517036028/vector_raster_image.png">
+<meta property="og:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1517036846/homogeneous_coordinate.png">
+<meta property="og:updated_time" content="2018-01-27T07:13:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me">
+<meta name="twitter:description" content="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Media Formats1 Digital Image1.1 Digital Representation of imagsimage: width, heigh">
+<meta name="twitter:image" content="http://res.cloudinary.com/anguszhang/image/upload/v1516945300/half_tone.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/"/>
+
+
+
+
+
+  <title>[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me | Angus' MineCraft</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Angus' MineCraft</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Resources
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MineCraft">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T23:09:11-08:00">
+                2018-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Media-Formats"><a href="#Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Media-Formats" class="headerlink" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Media Formats"></a>[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Media Formats</h2><h3 id="1-Digital-Image"><a href="#1-Digital-Image" class="headerlink" title="1 Digital Image"></a>1 Digital Image</h3><h4 id="1-1-Digital-Representation-of-imags"><a href="#1-1-Digital-Representation-of-imags" class="headerlink" title="1.1 Digital Representation of imags"></a>1.1 Digital Representation of imags</h4><p>image: width, height, pixel depth</p>
+<p><strong>pixel depth</strong>: number of bits to represent the pixel, same for all pixels of a given iamge.</p>
+<p>Num of bits depends on the <strong>color space representation(gray or color)</strong> and is typically segregated into channels. Total number is the sum of the number of bits used in each channel.</p>
+<p>Gray image: 8 bits for pixel.</p>
+<p>Color: RGB: 8 bits each channel, total is 24 bits.</p>
+<p>Color: RGBA: alpha, opacity.  Total 32 bits.</p>
+<p>Number of channel ranges from one to four, </p>
+<p>Image to Printing: halftone. Resolution: freq of dots per inch. Color image: four halftone channels are used: cyan(青色), magenta(洋红色), yellow and black(why?)</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516945300/half_tone.png" alt="halftone"></p>
+<p>The 8bit <strong>alpha channel</strong>(only alpha channel’s meaning) value for each pixel associates the degree of importance of each pixel in a compositing operation. A value of 0 indicates that the pixel will not be entirely composited, 255 means totally composited. </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516945772/alpha_channel.png" alt="alpha_channel"></p>
+<h4 id="1-2-Aspect-ratios"><a href="#1-2-Aspect-ratios" class="headerlink" title="1.2 Aspect ratios"></a>1.2 Aspect ratios</h4><p>3:2 (print photo)</p>
+<p>4:3(tv)</p>
+<p>16:9(high-definition image)</p>
+<p>47:20(anamorphic format in cinema)</p>
+<p>Change image aspect ratio can change the perceived appearence of the pixel sizes. Known as the pixel aspect ratio(PAR).</p>
+<h4 id="1-3-Digital-Image-Formats"><a href="#1-3-Digital-Image-Formats" class="headerlink" title="1.3 Digital Image Formats"></a>1.3 Digital Image Formats</h4><p>raw image file: no compression.</p>
+<p>Dithering: add white noise to signal.</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516950677/image_format1.png" alt=""></p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1516950677/image_format2.png" alt=""></p>
+<h3 id="2-Digital-Video"><a href="#2-Digital-Video" class="headerlink" title="2 Digital Video"></a>2 Digital Video</h3><h4 id="2-1-Representation-of-Digital-Video"><a href="#2-1-Representation-of-Digital-Video" class="headerlink" title="2. 1 Representation of Digital Video"></a>2. 1 Representation of Digital Video</h4><p>Two important properties: <strong>frame rate</strong> and <strong>scanning format</strong></p>
+<p>Scanning format: outcome of analog tech, can be represented as <strong><em>interlaced</em></strong> or <strong><em>progressive</em></strong>.</p>
+<h4 id="2-2-Analog-Video-and-TV"><a href="#2-2-Analog-Video-and-TV" class="headerlink" title="2.2 Analog Video and TV"></a>2.2 Analog Video and TV</h4><h5 id="2-2-1-Conversion-to-YUV"><a href="#2-2-1-Conversion-to-YUV" class="headerlink" title="2.2.1 Conversion to YUV"></a>2.2.1 Conversion to YUV</h5><p>RGB transforms into YUV signal. </p>
+<p>Y: intensity info</p>
+<p>UV: color info,</p>
+<p>humans are more tolerant to color distortions.</p>
+<h5 id="2-2-2-Analog-Video-Scanning"><a href="#2-2-2-Analog-Video-Scanning" class="headerlink" title="2.2.2 Analog Video Scanning"></a>2.2.2 Analog Video Scanning</h5><p><strong>Interlaced scanning format</strong>:</p>
+<p>frame -&gt; odd filed and even field.</p>
+<p>electron gun draws odd lines then even lines. </p>
+<p>NTSC(60Hz), 1/60 for each field, 1/30 for both.</p>
+<p>occasionally motion artifacts.</p>
+<p><strong>Progressive Scanning</strong></p>
+<p>line by line</p>
+<h4 id="2-3-Types-of-Video-Signals"><a href="#2-3-Types-of-Video-Signals" class="headerlink" title="2.3 Types of Video Signals"></a>2.3 Types of Video Signals</h4><p>Composite video</p>
+<p>S-video and component video, better quality</p>
+<p>Diff: YUV signal and the individual components are setn collectively or seperately</p>
+<h5 id="2-3-1-Composite-Video"><a href="#2-3-1-Composite-Video" class="headerlink" title="2.3.1 Composite Video"></a>2.3.1 Composite Video</h5><p>Also named: baseband video or RCA video.</p>
+<p>It is the analog wave-form that conveys the image data in the conventional NTSC television signal.Composite video contains both chrominance (color) and luminance (brightness) information, along with synchronization and blanking pulses, all together in a single signal</p>
+<p>Pros: reduce bandwidth and achieve real-time transmission. </p>
+<p>Cons: interference between chrominace and luminance</p>
+<h5 id="2-3-2-S-Video"><a href="#2-3-2-S-Video" class="headerlink" title="2.3.2 S-Video"></a>2.3.2 S-Video</h5><p>Super-video also: Y/C video. YUV, UV-&gt;C, YC transmit seperately.</p>
+<p>Pros: reduce interference</p>
+<p>Cons: bandwidth</p>
+<h5 id="2-3-3-Component-Video"><a href="#2-3-3-Component-Video" class="headerlink" title="2.3.3 Component Video"></a>2.3.3 Component Video</h5><p>YUV all three seperately.</p>
+<h4 id="2-4-YUV-Subsampling-Schemes"><a href="#2-4-YUV-Subsampling-Schemes" class="headerlink" title="2.4 YUV Subsampling Schemes"></a>2.4 YUV Subsampling Schemes</h4><p>RGB: captured and displayed.</p>
+<p>YUV: transmission.</p>
+<p>Color could be subsampled because of human eye’s insensitivity.</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517020776/subsample_ratio.png" alt="subsample ratio"></p>
+<p><strong>4:1:1 == 4:2:0</strong> 12 bits per pixel</p>
+<p>4:2:2 16bits  8 + 8 <em> 2 </em> 0.5 = 16</p>
+<h4 id="2-5-Digital-Video-Formats"><a href="#2-5-Digital-Video-Formats" class="headerlink" title="2.5 Digital Video Formats"></a>2.5 Digital Video Formats</h4><p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517021362/Analog_Format.png" alt="Analog video format"></p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517021892/digital_format.png" alt=""></p>
+<h3 id="3-Digital-Audio"><a href="#3-Digital-Audio" class="headerlink" title="3 Digital Audio"></a>3 Digital Audio</h3><h4 id="3-1-Digital-Representation-of-Audio"><a href="#3-1-Digital-Representation-of-Audio" class="headerlink" title="3.1 Digital Representation of Audio"></a>3.1 Digital Representation of Audio</h4><p>Analog to digital: pulse code modulation(PCM)</p>
+<p>sampling rate, quantization.</p>
+<p>Channels: one(mono), two(stereo), multi-channel(surround sound)</p>
+<p>Channel could equal to number of speaker.</p>
+<h4 id="3-2-Surround-Sound"><a href="#3-2-Surround-Sound" class="headerlink" title="3.2 Surround Sound"></a>3.2 Surround Sound</h4><p>5.1 surround sound: 6 speakers. </p>
+<p>7.1: add two spatial speakers</p>
+<h4 id="3-3-Spatial-Audio"><a href="#3-3-Spatial-Audio" class="headerlink" title="3.3 Spatial Audio"></a>3.3 Spatial Audio</h4><p>Spatial audio makes use of <strong><em>Head Related Transfer(HRTF)</em></strong> and <strong><em>reverberation</em></strong> to simulate the virtual localization of the sound source.</p>
+<p>HRTF: describes how the sound is filtered by the diffraction/reflection and other physical phenomena that happen because of the head position/orientation, pinna, and torso before the sound reaches the inner ear for perception.</p>
+<p>Reverberation: is the persistence of sound in a particular space after the original sound is removed. </p>
+<h4 id="3-4-Commoly-used-audio-formats"><a href="#3-4-Commoly-used-audio-formats" class="headerlink" title="3.4 Commoly used audio formats"></a>3.4 Commoly used audio formats</h4><p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517034601/audio_format1.png" alt="audio_format1"></p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517034602/audio_format2.png" alt="audio_format2"></p>
+<h3 id="4-Graphics"><a href="#4-Graphics" class="headerlink" title="4 Graphics"></a>4 Graphics</h3><ol>
+<li>Vector 2. rasters</li>
+</ol>
+<p>vector: Pros: provide infinite resolution Cons: convert to raster image to display.</p>
+<p>raster: represented as a grid pixels, each pixel having x,y coordinates and a value that corresponds to a color.</p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517036028/vector_raster_image.png" alt="vector and raster image"></p>
+<p>​<br>​<br>​    </p>
+<h5 id="4-1-1-2D-vector-graphics-representations"><a href="#4-1-1-2D-vector-graphics-representations" class="headerlink" title="4.1.1 2D vector graphics representations"></a>4.1.1 2D vector graphics representations</h5><p>Soomth primitive or discrete primitive</p>
+<p>Discrete primitive: store points such as triangle or polygon.</p>
+<h5 id="4-1-2-Animation-using-2d-graphics"><a href="#4-1-2-Animation-using-2d-graphics" class="headerlink" title="4.1.2 Animation using 2d graphics"></a>4.1.2 Animation using 2d graphics</h5><p>Translation, rotation, scaling,</p>
+<p>In order to take use of same operation— multiply, use homogeneous coordinates. </p>
+<p><img src="http://res.cloudinary.com/anguszhang/image/upload/v1517036846/homogeneous_coordinate.png" alt="homogeneous coordinate"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me">http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Multimedia-System/" rel="tag"># Multimedia System</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-2-Digital-Data-Acquistion/" rel="next" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion">
+                <i class="fa fa-chevron-left"></i> [Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 2 Digital Data Acquistion
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/selfie.jpg"
+               alt="Angus" />
+          <p class="site-author-name" itemprop="name">Angus</p>
+           
+              <p class="site-description motion-element" itemprop="description">只要思想不滑坡，办法总比困难多</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Media-Formats"><span class="nav-number">1.</span> <span class="nav-text">[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Media Formats</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Digital-Image"><span class="nav-number">1.1.</span> <span class="nav-text">1 Digital Image</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Digital-Representation-of-imags"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 Digital Representation of imags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Aspect-ratios"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 Aspect ratios</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Digital-Image-Formats"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Digital Image Formats</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Digital-Video"><span class="nav-number">1.2.</span> <span class="nav-text">2 Digital Video</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Representation-of-Digital-Video"><span class="nav-number">1.2.1.</span> <span class="nav-text">2. 1 Representation of Digital Video</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Analog-Video-and-TV"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Analog Video and TV</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-Conversion-to-YUV"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.1 Conversion to YUV</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-Analog-Video-Scanning"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2 Analog Video Scanning</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-Types-of-Video-Signals"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 Types of Video Signals</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-Composite-Video"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">2.3.1 Composite Video</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-S-Video"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.3.2 S-Video</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-3-Component-Video"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">2.3.3 Component Video</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-YUV-Subsampling-Schemes"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 YUV Subsampling Schemes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-Digital-Video-Formats"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 Digital Video Formats</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Digital-Audio"><span class="nav-number">1.3.</span> <span class="nav-text">3 Digital Audio</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Digital-Representation-of-Audio"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 Digital Representation of Audio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-Surround-Sound"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 Surround Sound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-Spatial-Audio"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 Spatial Audio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-Commoly-used-audio-formats"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 Commoly used audio formats</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Graphics"><span class="nav-number">1.4.</span> <span class="nav-text">4 Graphics</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-1-2D-vector-graphics-representations"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">4.1.1 2D vector graphics representations</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-2-Animation-using-2d-graphics"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">4.1.2 Animation using 2d graphics</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Angus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/';
+          this.page.identifier = '2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/';
+          this.page.title = '[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
