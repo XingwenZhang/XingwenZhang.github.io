@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Dynamic Programming,Algorithm," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="从Target Sum说起 - DP题目：You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symb">
+<meta name="keywords" content="Dynamic Programming,Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Target Sum说起 - DP">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/从Target-Sum说起-DP/index.html">
+<meta property="og:site_name" content="Angus&#39; MineCraft">
+<meta property="og:description" content="从Target Sum说起 - DP题目：You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symb">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-08T19:53:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Target Sum说起 - DP">
+<meta name="twitter:description" content="从Target Sum说起 - DP题目：You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symb">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/08/从Target-Sum说起-DP/"/>
+
+
+
+
+
+  <title>从Target Sum说起 - DP | Angus' MineCraft</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106986191-1', 'auto');
+  ga('send', 'pageview');
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Angus' MineCraft</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resources">
+          <a href="/resources/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Resources
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Projects
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/08/从Target-Sum说起-DP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Angus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/selfie.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Angus' MineCraft">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从Target Sum说起 - DP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-08T11:51:36-08:00">
+                2018-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/08/从Target-Sum说起-DP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/08/从Target-Sum说起-DP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="从Target-Sum说起-DP"><a href="#从Target-Sum说起-DP" class="headerlink" title="从Target Sum说起 - DP"></a>从Target Sum说起 - DP</h1><p>题目：You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.</p>
+<p>Find out how many ways to assign symbols to make sum of integers equal to target S.</p>
+<p>Example 1:<br>Input: nums is [1, 1, 1, 1, 1], S is 3.<br>Output: 5<br>Explanation: </p>
+<p>-1+1+1+1+1 = 3<br>+1-1+1+1+1 = 3<br>+1+1-1+1+1 = 3<br>+1+1+1-1+1 = 3<br>+1+1+1+1-1 = 3</p>
+<p>There are 5 ways to assign symbols to make the sum of nums be target 3.<br>Note:<br>The length of the given array is positive and will not exceed 20.<br>The sum of elements in the given array will not exceed 1000.<br>Your output answer is guaranteed to be fitted in a 32-bit integer.</p>
+<ol>
+<li>DFS, 暴力搜索。这里因为限制了数目不超过20个数。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line">        <span class="comment">// vector&lt;int&gt; sign(nums.size(), 0);</span></div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="comment">// assign(count, sign, nums, 0, S, 0);</span></div><div class="line">        dfs(count, nums, <span class="number">0</span>, S, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>&amp; count, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> depth, <span class="keyword">int</span> S, <span class="keyword">int</span> cur_sum)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(depth == nums.size())&#123;</div><div class="line">            <span class="keyword">if</span>(cur_sum == S)&#123;</div><div class="line">                count++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        dfs(count, nums, depth+<span class="number">1</span>, S, cur_sum + nums[depth]);</div><div class="line">        dfs(count, nums, depth+<span class="number">1</span>, S, cur_sum - nums[depth]);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>对暴力DP的优化, 48%</p>
+<p>或者也可以算是Memorization的DP</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; cache(nums.size());</div><div class="line">        <span class="keyword">return</span> dfs(nums, <span class="number">0</span>, S, <span class="number">0</span>, cache);</div><div class="line">        </div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> depth, <span class="keyword">int</span> S, <span class="keyword">int</span> cur_sum, <span class="built_in">vector</span>&lt;<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;&amp; cache)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(depth == nums.size())&#123;</div><div class="line">            <span class="keyword">return</span> cur_sum == S;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(cache[depth].count(cur_sum)) <span class="keyword">return</span> cache[depth][cur_sum];</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> left = dfs(nums, depth+<span class="number">1</span>, S, cur_sum + nums[depth], cache);</div><div class="line">        <span class="keyword">int</span> right = dfs(nums, depth+<span class="number">1</span>, S, cur_sum - nums[depth], cache);</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> cache[depth][cur_sum] = left + right;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>Bottom-Up DP</p>
+<p>二维DP</p>
+<p>Define:</p>
+<p>S = sum($a_i$)</p>
+<p>当所有值取正，结果就是S, 相反所有值取负，结果是-S. 加上0，所有的取值空间是2*S + 1.</p>
+<p>这也是为什么DP会比DFS快的原因。DFS的搜索空间是2^n.</p>
+<p>当然因为数组是0 index的，所以在做的时候需要设置offset, 这里这是为S，相当于整体向正方向偏移offset长度。</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DP Push, 59.61%</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="keyword">int</span> sum = accumulate(nums.begin(), nums.end(), <span class="number">0</span>);</div><div class="line">        <span class="keyword">if</span>(sum &lt; S) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> offset = sum;</div><div class="line">        <span class="comment">// first n items to achieve the sum</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; dp(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">2</span> * sum + <span class="number">1</span>, <span class="number">0</span>));</div><div class="line">        dp[<span class="number">0</span>][offset] = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="comment">//for(int i=0; i&lt;n; i++)&#123;</span></div><div class="line">        <span class="comment">//    for(int j=nums[i]; j &lt; 2 * sum + 1 - nums[i]; j++)&#123;</span></div><div class="line">        <span class="comment">//        if(dp[i][j])&#123;</span></div><div class="line">        <span class="comment">//            // push</span></div><div class="line">        <span class="comment">//            dp[i+1][j-nums[i]] += dp[i][j];</span></div><div class="line">        <span class="comment">//            dp[i+1][j+nums[i]] += dp[i][j];</span></div><div class="line">        <span class="comment">//        &#125;</span></div><div class="line">        <span class="comment">//    &#125;</span></div><div class="line">        <span class="comment">//&#125;</span></div><div class="line">      	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</div><div class="line">          	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">2</span>*sum + <span class="number">1</span>; j++)&#123;</div><div class="line">              	<span class="comment">// push</span></div><div class="line">            	<span class="keyword">if</span>(j-nums[i] &gt;= <span class="number">0</span>)</div><div class="line">                  	dp[i+<span class="number">1</span>][j-nums[i]] += dp[i][j];</div><div class="line">              	<span class="keyword">if</span>(j+nums[i] &lt; <span class="number">2</span>*sum + <span class="number">1</span>)</div><div class="line">                  	dp[i+<span class="number">1</span>][j+nums[i]] += dp[i][j];</div><div class="line">          	&#125;</div><div class="line">      	&#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dp.back()[offset + S];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DP, pull, 59.61%</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="keyword">int</span> sum = accumulate(nums.begin(), nums.end(), <span class="number">0</span>);</div><div class="line">        <span class="keyword">if</span>(sum &lt; S) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> offset = sum;</div><div class="line">        <span class="comment">// first n items to achieve the sum</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; dp(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">2</span> * sum + <span class="number">1</span>, <span class="number">0</span>));</div><div class="line">        dp[<span class="number">0</span>][offset] = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j &lt; <span class="number">2</span> * sum + <span class="number">1</span>; j++)&#123;</div><div class="line">                <span class="comment">// pull</span></div><div class="line">                <span class="keyword">if</span>(j-nums[i] &gt;= <span class="number">0</span> &amp;&amp; j+nums[i] &lt; <span class="number">2</span> * sum + <span class="number">1</span>)</div><div class="line">                    dp[i+<span class="number">1</span>][j] = dp[i][j-nums[i]] + dp[i][j+nums[i]];</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j-nums[i] &lt; <span class="number">0</span>)&#123;</div><div class="line">                    dp[i+<span class="number">1</span>][j] = dp[i][j+nums[i]];</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span>&#123;</div><div class="line">                    dp[i+<span class="number">1</span>][j] = dp[i][j-nums[i]];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dp.back()[offset + S];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>仔细观察Push 和 pull的区别，为什么j的值，在push里面可以从j=nums[i]; j&lt;2*sum+1-nums[i]; j++即可。而pull中却会出问题？</p>
+<p>一个直观的解释是，当你Push的时候，形状是正向三角的，形状类似于$\bigwedge$，范围是扩大的; 而pull的时候，形状是倒向的，$\bigvee$, 范围是缩小的，就是产生missing. 但是又有一个问题，即便是正向的，依然缺少一部分需要push到下一层的数据，比如j=0的时候，可以push到下一层的j+nums[i]. 所以为什么结果还是正确的呢？这是因为有一个offset的存在。使得之前的数据都是0，加与不加的结果一致。当然为了简化写的方法，其实也可以多循环一些，把j的范围从0到2*sum+1. 这样的好处在于，不容易遗漏，坏处在于速度稍有影响，多做几次没用的循环。</p>
+<ol>
+<li>对上面的DP的优化，因为事实上只使用到了俩行的数据，因此可以使用滚动数组来减少空间复杂度。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DP Push, 68.71%</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="keyword">int</span> sum = accumulate(nums.begin(), nums.end(), <span class="number">0</span>);</div><div class="line">        <span class="keyword">if</span>(sum &lt; S) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> offset = sum;</div><div class="line">        <span class="keyword">int</span> kMaxN = <span class="number">2</span> * sum + <span class="number">1</span>;</div><div class="line">        <span class="comment">// first n items to achieve the sum</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(kMaxN);</div><div class="line">        dp[offset] = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp(dp.size(), <span class="number">0</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = nums[i]; j &lt; kMaxN - nums[i]; j++)&#123;</div><div class="line">                <span class="keyword">if</span>(dp[j])&#123;</div><div class="line">                    tmp[j-nums[i]] += dp[j];</div><div class="line">                    tmp[j+nums[i]] += dp[j];</div><div class="line">                &#125; </div><div class="line">            &#125;</div><div class="line">            swap(tmp, dp);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[offset + S];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>除了滚动数组之外，这里因为整个dp数组是sparse的，所以还可以直接用hashtable来优化空间。不需要全部存储。而且当使用hashtable的时候就不用考虑offset了，因为hashtable的key可以为负数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DP Push, 50.86%</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; dp(n+<span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; item : dp[i])&#123;</div><div class="line">                <span class="keyword">int</span> sum = item.first, cnt = item.second;</div><div class="line">                <span class="comment">// push</span></div><div class="line">                dp[i+<span class="number">1</span>][sum - nums[i]] += cnt;</div><div class="line">                dp[i+<span class="number">1</span>][sum + nums[i]] += cnt;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dp.back()[S];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个当然也可以继续优化，因为不需要n+1个hashtable，只需要2个就可以。略。</p>
+<ol>
+<li><p>接下来需要换一个思路来解决这个问题。将原问题转换为subset sum.</p>
+<p>这个思路我觉得很巧妙。定义集合P为所有取正号的数的集合，T为负号的数的集合。</p>
+<p>set(P) $\bigcup$ set(T) = A, set(P) $\bigcap$ set(T) = $\emptyset$</p>
+<p>sum(P) - sum(T) = S</p>
+<p>sum(P) + sum(P) -sum(T) + sum(T) = S + sum(P) + sum(T)</p>
+<p>2*sum(P) = S + sum(A)</p>
+<p>sum(P) = (S + sum(A)) / 2</p>
+</li>
+</ol>
+<p>​    也就是说，此时的问题已经转换为了在原集合中找到一个子集，这个子集的和满足目标与整体集合和的一半。这里的/2也可以作为剪枝条件。此时这个问题已经转变为了经典的01背包问题，一个集合，每个数或者在P或者不在P. 可能的取值只有0和1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</div><div class="line">        S = <span class="built_in">abs</span>(S); <span class="comment">// 这里正负对结果没有影响，完全可以在结果前面加一个负号，改变正负关系</span></div><div class="line">        <span class="keyword">int</span> sum = accumulate(nums.begin(), nums.end(), <span class="number">0</span>);</div><div class="line">        <span class="keyword">if</span>(sum &lt; S || (S + sum) % <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> target = (S + sum) / <span class="number">2</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(target + <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = target; j &gt;= num; j--)&#123;</div><div class="line">                dp[j] += dp[j - num]; <span class="comment">// 因为in-place改变，所以只能用pull, 并且被改变的必须是序号比较大的，之后不会再用的</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dp[target];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个题需要多看多想。Fight on~</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://zxi.mytechroad.com/blog/dynamic-programming/leetcode-494-target-sum/" target="_blank" rel="external">http://zxi.mytechroad.com/blog/dynamic-programming/leetcode-494-target-sum/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for your donation</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Angus WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Angus Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Angus
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/2018/03/08/从Target-Sum说起-DP/" title="从Target Sum说起 - DP">http://yoursite.com/2018/03/08/从Target-Sum说起-DP/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/Reading-Notes-Multimedia-Systems-—-Algorithms-Standards-and-Industry-Practices-Chapter-3-Media-Representation-and-Me/" rel="next" title="[Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me">
+                <i class="fa fa-chevron-left"></i> [Reading Notes] Multimedia Systems — Algorithms, Standards and Industry Practices, Chapter 3 Media Representation and Me
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/selfie.jpg"
+               alt="Angus" />
+          <p class="site-author-name" itemprop="name">Angus</p>
+           
+              <p class="site-description motion-element" itemprop="description">只要思想不滑坡，办法总比困难多</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XingwenZhang/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/xingwen-zhang/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhangxingwen0428@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从Target-Sum说起-DP"><span class="nav-number">1.</span> <span class="nav-text">从Target Sum说起 - DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.0.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Angus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://angus0428.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/03/08/从Target-Sum说起-DP/';
+          this.page.identifier = '2018/03/08/从Target-Sum说起-DP/';
+          this.page.title = '从Target Sum说起 - DP';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://angus0428.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
